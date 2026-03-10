@@ -7,78 +7,60 @@
 <style>
 
 body{
-    margin:0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg,#ff4e50,#fc913a);
-    text-align:center;
-    overflow-x:hidden;
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(120deg,#ff758c,#ff7eb3);
+overflow:hidden;
 }
 
 h1{
-    font-size:60px;
-    color:white;
-    margin-top:40px;
-    text-shadow:0 0 20px #fff;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{ text-shadow:0 0 10px #fff;}
-to{ text-shadow:0 0 30px #fff,0 0 40px pink;}
+color:white;
+font-size:60px;
+margin-top:40px;
+text-shadow:0 0 20px white;
 }
 
 .message{
-    color:white;
-    font-size:24px;
-    margin-bottom:40px;
+color:white;
+font-size:24px;
+margin-bottom:30px;
 }
 
 .gallery{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:30px;
 }
 
 .gallery img{
-    width:320px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
-    transition:0.4s;
+width:320px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+transition:0.4s;
 }
 
 .gallery img:hover{
-    transform:scale(1.05);
+transform:scale(1.08);
 }
 
 .cake{
-    font-size:120px;
-    margin-top:30px;
+font-size:120px;
+margin-top:20px;
 }
 
 .balloon{
-    position:fixed;
-    bottom:-150px;
-    font-size:50px;
-    animation: float 8s infinite;
+position:fixed;
+bottom:-100px;
+font-size:40px;
+animation:float 8s infinite;
 }
 
 @keyframes float{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-120vh);}
-}
-
-.confetti{
-    position:fixed;
-    width:10px;
-    height:10px;
-    background:yellow;
-    animation:fall 5s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-100vh);}
-100%{transform:translateY(100vh);}
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
 }
 
 </style>
@@ -89,7 +71,7 @@ to{ text-shadow:0 0 30px #fff,0 0 40px pink;}
 <h1>🎉 Happy Birthday Vaishali 🎉</h1>
 
 <p class="message">
-Wishing you a day filled with happiness, love and surprises! 🎂💖
+Wishing you happiness, love and lots of smiles today and always ❤️
 </p>
 
 <div class="cake">
@@ -98,16 +80,14 @@ Wishing you a day filled with happiness, love and surprises! 🎂💖
 
 <div class="gallery">
 
-<img src="photo1.jpg">
-<img src="photo2.jpg">
+<img src="vaishali1.jpg">
+<img src="vaishali2.jpg">
 
 </div>
 
 <script>
 
-/* Balloons */
-
-for(let i=0;i<12;i++){
+for(let i=0;i<15;i++){
 
 let balloon=document.createElement("div")
 balloon.className="balloon"
@@ -117,23 +97,6 @@ balloon.style.left=Math.random()*100+"%"
 balloon.style.animationDuration=5+Math.random()*5+"s"
 
 document.body.appendChild(balloon)
-
-}
-
-/* Confetti */
-
-for(let i=0;i<80;i++){
-
-let confetti=document.createElement("div")
-confetti.className="confetti"
-
-confetti.style.left=Math.random()*100+"%"
-confetti.style.background=
-`hsl(${Math.random()*360},100%,50%)`
-
-confetti.style.animationDuration=3+Math.random()*4+"s"
-
-document.body.appendChild(confetti)
 
 }
 
