@@ -13,7 +13,7 @@ overflow:hidden;
 text-align:center;
 }
 
-/* FIRST PAGE */
+/* ---------------- FIRST PAGE ---------------- */
 
 #firstPage{
 height:100vh;
@@ -21,80 +21,125 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffd6e7,#ffc6ff,#bde0fe);
-color:#ff2e63;
+background:linear-gradient(135deg,#ffd6e7,#cdb4db,#a2d2ff,#ffc8dd);
+background-size:400% 400%;
+animation:bgmove 10s infinite alternate;
+color:#d90429;
+}
+
+@keyframes bgmove{
+0%{background-position:left}
+100%{background-position:right}
 }
 
 #firstPage h1{
-font-size:60px;
+font-size:65px;
 }
 
 #firstPage p{
-font-size:22px;
-max-width:600px;
+font-size:24px;
+max-width:650px;
+color:#444;
 }
 
-/* DARK SCENE */
+/* ---------------- DARK SCENE ---------------- */
 
 #darkScene{
 display:none;
-background:black;
+background:#050505;
 height:100vh;
 color:white;
 position:relative;
 }
 
-/* MESSAGE ABOVE CAKE */
+/* message */
 
 #topMessage{
 position:absolute;
-top:10%;
+top:8%;
 width:100%;
-font-size:45px;
+font-size:48px;
 color:white;
-text-shadow:0 0 10px pink;
+text-shadow:0 0 15px red;
 }
 
-/* CAKE */
+/* ---------------- 3D CAKE ---------------- */
 
 .cake{
 position:absolute;
 bottom:120px;
 left:50%;
 transform:translateX(-50%);
+perspective:800px;
 }
+
+/* layers */
 
 .layer{
 margin:auto;
 border-radius:12px;
-box-shadow:0 0 15px pink;
+box-shadow:
+0 8px 0 #4b2c20,
+0 0 20px rgba(255,120,120,0.6);
 }
 
-.layer1{width:220px;height:70px;background:#ff7eb3;}
-.layer2{width:170px;height:60px;background:#ff9ac4;margin-top:-10px;}
-.layer3{width:120px;height:50px;background:#ffc1dc;margin-top:-10px;position:relative;}
+.layer1{
+width:260px;
+height:80px;
+background:linear-gradient(#5b3a29,#3b1f15);
+}
+
+.layer2{
+width:200px;
+height:70px;
+background:linear-gradient(#6b4226,#3d2317);
+margin-top:-12px;
+}
+
+.layer3{
+width:140px;
+height:60px;
+background:linear-gradient(#7a4b2a,#3f2518);
+margin-top:-12px;
+position:relative;
+}
+
+/* chocolate topping */
+
+.choco{
+position:absolute;
+width:100%;
+height:20px;
+background:#2d140c;
+top:0;
+border-radius:10px;
+}
+
+/* candles */
 
 .candle{
-width:10px;
-height:40px;
+width:12px;
+height:45px;
 background:white;
 position:absolute;
-top:-40px;
+top:-45px;
 }
 
 .flame{
-width:12px;
-height:12px;
+width:14px;
+height:14px;
 background:orange;
 border-radius:50%;
 position:absolute;
-top:-12px;
-box-shadow:0 0 10px yellow;
+top:-14px;
+box-shadow:0 0 12px yellow;
 }
 
-#c1{left:20px}
-#c2{left:55px}
-#c3{left:90px}
+#c1{left:25px}
+#c2{left:65px}
+#c3{left:105px}
+
+/* fireworks canvas */
 
 canvas{
 position:absolute;
@@ -115,9 +160,10 @@ left:0;
 <h1>🎉 Happy Birthday Vaishali 🎉</h1>
 
 <p>
-Today is special because someone wonderful was born.  
-Vaishali, may your smile always shine brighter than the stars  
-and may every dream you have turn into reality. 💖✨
+Today is not just another day…  
+because someone incredibly special was born.  
+Vaishali, may your life always be filled with laughter,  
+dreams, and beautiful moments. 💖✨
 </p>
 
 </div>
@@ -136,6 +182,8 @@ and may every dream you have turn into reality. 💖✨
 
 <div class="layer layer3">
 
+<div class="choco"></div>
+
 <div class="candle" id="c1"><div class="flame"></div></div>
 <div class="candle" id="c2"><div class="flame"></div></div>
 <div class="candle" id="c3"><div class="flame"></div></div>
@@ -151,31 +199,14 @@ and may every dream you have turn into reality. 💖✨
 
 <script>
 
-/* PAGE TRANSITION */
+/* transition to dark scene */
 
 setTimeout(()=>{
-
 document.getElementById("firstPage").style.display="none"
 document.getElementById("darkScene").style.display="block"
+},5000)
 
-},4000)
-
-/* CANDLES ONLY FIRST */
-
-setTimeout(()=>{
-
-document.querySelector(".cake").style.opacity="0"
-
-},4000)
-
-setTimeout(()=>{
-
-document.querySelector(".cake").style.opacity="1"
-startFireworks()
-
-},6000)
-
-/* FIREWORKS */
+/* fireworks */
 
 const canvas=document.getElementById("fireworks")
 const ctx=canvas.getContext("2d")
@@ -187,7 +218,7 @@ let particles=[]
 
 function createFirework(x,y){
 
-for(let i=0;i<150;i++){
+for(let i=0;i<120;i++){
 
 particles.push({
 x:x,
@@ -210,13 +241,9 @@ Math.random()*canvas.height/2
 )
 },600)
 
-/* FIREWORK TEXT */
-
-setTimeout(()=>{
-alert("🎆 Happy Birthday Vaishali 🎆")
-},3000)
-
 }
+
+setTimeout(startFireworks,7000)
 
 function animate(){
 
