@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Vaishali ♥️</title>
+<title>Happy Birthday Vaishali</title>
 
 <style>
 
@@ -13,68 +13,63 @@ font-family:Arial;
 text-align:center;
 }
 
-/* ---------- SCENE 1 ---------- */
+/* -------- SCENE 1 -------- */
 
 #scene1{
 height:100vh;
 background:white;
+position:relative;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
-position:relative;
 }
 
-#title{
-font-size:55px;
+#wallText{
+font-size:60px;
 color:#0077b6;
-margin-bottom:40px;
+z-index:2;
 }
+
+/* balloon decoration */
 
 .balloon{
-width:40px;
-height:50px;
-background:#90dbf4;
+width:45px;
+height:55px;
 border-radius:50%;
 position:absolute;
 }
 
-.balloon.white{
-background:white;
-border:2px solid #ccc;
-}
-
-.floorBalloon{
-bottom:20px;
-}
+.blue{background:#4cc9f0;}
+.white{background:white;border:2px solid #ddd}
 
 /* switch */
 
-.switch{
+#switch{
+position:absolute;
+right:40px;
+top:40px;
 width:60px;
 height:30px;
 background:#ccc;
 border-radius:20px;
-position:absolute;
-right:40px;
-top:40px;
+cursor:pointer;
 }
 
-/* ---------- SCENE 2 ---------- */
+/* -------- SCENE 2 -------- */
 
 #scene2{
 display:none;
-height:100vh;
 background:black;
+height:100vh;
 position:relative;
 }
 
 .candle{
-width:12px;
+width:14px;
 height:60px;
 background:white;
 position:absolute;
-bottom:40%;
+bottom:45%;
 }
 
 .flame{
@@ -84,12 +79,14 @@ background:orange;
 border-radius:50%;
 position:absolute;
 top:-14px;
-box-shadow:0 0 10px yellow;
+box-shadow:0 0 12px yellow;
 }
 
-#c1{left:45%}
+#c1{left:47%}
 #c2{left:50%}
-#c3{left:55%}
+#c3{left:53%}
+
+/* fireworks canvas */
 
 canvas{
 position:absolute;
@@ -97,30 +94,29 @@ top:0;
 left:0;
 }
 
-/* ---------- SCENE 3 ---------- */
+/* -------- SCENE 3 -------- */
 
 #scene3{
 display:none;
 height:100vh;
 background:white;
 position:relative;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
 #finalText{
-position:absolute;
-top:10%;
-width:100%;
-font-size:50px;
+font-size:55px;
 color:#0077b6;
+margin-bottom:40px;
 }
 
-/* cake */
+/* 5 tier cake */
 
 .cake{
-position:absolute;
-bottom:120px;
-left:50%;
-transform:translateX(-50%);
+position:relative;
 }
 
 .layer{
@@ -128,24 +124,11 @@ margin:auto;
 border-radius:10px;
 }
 
-.layer1{width:260px;height:80px;background:#ff7eb3;}
-.layer2{width:200px;height:70px;background:#ff9ac4;margin-top:-10px;}
-.layer3{width:140px;height:60px;background:#ffc1dc;margin-top:-10px;}
-
-/* confetti */
-
-.confetti{
-position:absolute;
-width:8px;
-height:8px;
-background:red;
-animation:fall 4s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-20px)}
-100%{transform:translateY(110vh)}
-}
+.l1{width:300px;height:70px;background:#ff7eb3;}
+.l2{width:250px;height:65px;background:#ff9ac4;margin-top:-10px;}
+.l3{width:200px;height:60px;background:#ffc1dc;margin-top:-10px;}
+.l4{width:150px;height:55px;background:#ffd6e7;margin-top:-10px;}
+.l5{width:100px;height:50px;background:#ffe5ec;margin-top:-10px;}
 
 </style>
 
@@ -157,20 +140,30 @@ animation:fall 4s linear infinite;
 
 <div id="scene1">
 
-<div id="title">
-🎉 Happy Birthday Vaishali ♥️🫶🏻
+<div id="wallText">
+🎉 Happy Birthday Vaishali ♥️
 </div>
 
-<div class="switch"></div>
+<div id="switch"></div>
 
-<div class="balloon" style="left:20%;top:20%"></div>
-<div class="balloon white" style="left:30%;top:25%"></div>
-<div class="balloon" style="left:70%;top:22%"></div>
-<div class="balloon white" style="left:60%;top:18%"></div>
+<!-- balloon wall decoration -->
 
-<div class="balloon floorBalloon" style="left:25%"></div>
-<div class="balloon white floorBalloon" style="left:50%"></div>
-<div class="balloon floorBalloon" style="left:75%"></div>
+<script>
+
+for(let i=0;i<80;i++){
+
+let b=document.createElement("div")
+
+b.className="balloon "+(i%2==0?"blue":"white")
+
+b.style.left=Math.random()*100+"vw"
+b.style.top=Math.random()*100+"vh"
+
+document.getElementById("scene1").appendChild(b)
+
+}
+
+</script>
 
 </div>
 
@@ -195,31 +188,36 @@ animation:fall 4s linear infinite;
 </div>
 
 <div class="cake">
-<div class="layer layer3"></div>
-<div class="layer layer2"></div>
-<div class="layer layer1"></div>
+
+<div class="layer l5"></div>
+<div class="layer l4"></div>
+<div class="layer l3"></div>
+<div class="layer l2"></div>
+<div class="layer l1"></div>
+
 </div>
 
 </div>
 
 <script>
 
-/* scene transitions */
+/* switch click */
 
-setTimeout(()=>{
+document.getElementById("switch").onclick=()=>{
+
 document.getElementById("scene1").style.display="none"
 document.getElementById("scene2").style.display="block"
-},2500)
+
+setTimeout(startFireworks,3000)
 
 setTimeout(()=>{
-startFireworks()
+
+document.getElementById("scene2").style.display="none"
+document.getElementById("scene3").style.display="flex"
+
 },5500)
 
-setTimeout(()=>{
-document.getElementById("scene2").style.display="none"
-document.getElementById("scene3").style.display="block"
-createConfetti()
-},8000)
+}
 
 /* fireworks */
 
@@ -231,7 +229,7 @@ canvas.height=window.innerHeight
 
 let particles=[]
 
-function createFirework(x,y){
+function firework(x,y){
 
 for(let i=0;i<120;i++){
 
@@ -250,7 +248,7 @@ life:100
 function startFireworks(){
 
 setInterval(()=>{
-createFirework(Math.random()*canvas.width,Math.random()*canvas.height/2)
+firework(Math.random()*canvas.width,Math.random()*canvas.height/2)
 },500)
 
 }
@@ -278,26 +276,6 @@ requestAnimationFrame(animate)
 }
 
 animate()
-
-/* confetti */
-
-function createConfetti(){
-
-setInterval(()=>{
-
-let c=document.createElement("div")
-c.className="confetti"
-
-c.style.left=Math.random()*100+"vw"
-c.style.background="hsl("+Math.random()*360+",100%,50%)"
-
-document.body.appendChild(c)
-
-setTimeout(()=>{c.remove()},4000)
-
-},200)
-
-}
 
 </script>
 
