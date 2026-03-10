@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Vaishali 🎂</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#ffffff,#cfe9ff,#9fd3ff);
+overflow-x:hidden;
+}
+
+/* Title */
+
+h1{
+font-size:60px;
+margin-top:40px;
+color:#004a8f;
+text-shadow:0 0 15px white;
+}
+
+/* Message */
+
+.message{
+font-size:24px;
+color:#003d73;
+margin-bottom:30px;
+}
+
+/* Cake Section */
+
+.cake-section{
+margin-top:40px;
+padding:40px;
+background:rgba(255,255,255,0.7);
+border-radius:25px;
+display:inline-block;
+box-shadow:0 0 40px rgba(0,140,255,0.3);
+}
+
+/* BIG cake and candles */
+
+.cake{
+font-size:180px;
+filter:drop-shadow(0 0 20px white);
+}
+
+.candles{
+font-size:120px;
+color:white;
+text-shadow:0 0 25px white,0 0 40px #4fc3ff;
+margin-top:-40px;
+}
+
+/* Photo gallery */
+
+.gallery{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.gallery img{
+width:320px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.08);
+}
+
+/* Balloons */
+
+.balloon{
+position:fixed;
+bottom:-100px;
+font-size:50px;
+animation:float 8s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday Vaishali 🎉</h1>
+
+<p class="message">
+Wishing you happiness, love and a magical birthday ❤️
+</p>
+
+<div class="cake-section">
+
+<div class="candles">🕯️🕯️🕯️</div>
+<div class="cake">🎂</div>
+
+</div>
+
+<div class="gallery">
+
+<img src="vaishali1.jpg">
+<img src="vaishali2.jpg">
+
+</div>
+
+<script>
+
+for(let i=0;i<15;i++){
+
+let balloon=document.createElement("div")
+balloon.className="balloon"
+balloon.innerHTML="🎈"
+
+balloon.style.left=Math.random()*100+"%"
+balloon.style.animationDuration=5+Math.random()*5+"s"
+
+document.body.appendChild(balloon)
+
+}
+
+</script>
+
+</body>
+</html>
