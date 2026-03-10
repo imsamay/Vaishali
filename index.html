@@ -8,86 +8,78 @@
 
 body{
 margin:0;
-background:black;
-overflow:hidden;
 font-family:Arial;
-color:white;
+overflow:hidden;
 text-align:center;
 }
 
-#intro{
-position:absolute;
-top:40%;
-width:100%;
+/* FIRST PAGE */
+
+#firstPage{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e7,#ffc6ff,#bde0fe);
+color:#ff2e63;
+}
+
+#firstPage h1{
 font-size:60px;
-opacity:0;
-animation:fade 3s forwards;
 }
 
-@keyframes fade{
-to{opacity:1}
+#firstPage p{
+font-size:22px;
+max-width:600px;
 }
 
-#name{
+/* DARK SCENE */
+
+#darkScene{
 display:none;
-position:absolute;
-top:15%;
-width:100%;
-font-size:55px;
-color:#ff7eb3;
-text-shadow:0 0 20px pink,0 0 40px hotpink;
+background:black;
+height:100vh;
+color:white;
+position:relative;
 }
 
-#cakeScene{
-display:none;
+/* MESSAGE ABOVE CAKE */
+
+#topMessage{
 position:absolute;
-top:45%;
+top:10%;
 width:100%;
+font-size:45px;
+color:white;
+text-shadow:0 0 10px pink;
 }
 
-/* 3 tier cake */
+/* CAKE */
 
 .cake{
-position:relative;
-width:200px;
-margin:auto;
+position:absolute;
+bottom:120px;
+left:50%;
+transform:translateX(-50%);
 }
 
 .layer{
 margin:auto;
-border-radius:10px;
+border-radius:12px;
 box-shadow:0 0 15px pink;
 }
 
-.layer1{
-width:200px;
-height:60px;
-background:#ff7eb3;
-}
-
-.layer2{
-width:150px;
-height:50px;
-background:#ff9ac4;
-margin-top:-10px;
-}
-
-.layer3{
-width:100px;
-height:40px;
-background:#ffc1dc;
-margin-top:-10px;
-position:relative;
-}
-
-/* candles */
+.layer1{width:220px;height:70px;background:#ff7eb3;}
+.layer2{width:170px;height:60px;background:#ff9ac4;margin-top:-10px;}
+.layer3{width:120px;height:50px;background:#ffc1dc;margin-top:-10px;position:relative;}
 
 .candle{
 width:10px;
-height:35px;
+height:40px;
 background:white;
 position:absolute;
-top:-35px;
+top:-40px;
 }
 
 .flame{
@@ -100,22 +92,9 @@ top:-12px;
 box-shadow:0 0 10px yellow;
 }
 
-#c1{left:15px}
-#c2{left:45px}
-#c3{left:75px}
-
-/* rose petals */
-
-.petal{
-position:absolute;
-font-size:20px;
-animation:fall linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-50px)}
-100%{transform:translateY(110vh)}
-}
+#c1{left:20px}
+#c2{left:55px}
+#c3{left:90px}
 
 canvas{
 position:absolute;
@@ -129,17 +108,29 @@ left:0;
 
 <body>
 
+<!-- FIRST PAGE -->
+
+<div id="firstPage">
+
+<h1>🎉 Happy Birthday Vaishali 🎉</h1>
+
+<p>
+Today is special because someone wonderful was born.  
+Vaishali, may your smile always shine brighter than the stars  
+and may every dream you have turn into reality. 💖✨
+</p>
+
+</div>
+
+<!-- DARK SCENE -->
+
+<div id="darkScene">
+
 <canvas id="fireworks"></canvas>
 
-<div id="intro">
-🎉 Happy Birthday Vaishali 🎉
+<div id="topMessage">
+❤️ Happy Birthday Vaishali ❤️
 </div>
-
-<div id="name">
-🎊 Happy Birthday Vaishali 🎊
-</div>
-
-<div id="cakeScene">
 
 <div class="cake">
 
@@ -158,53 +149,33 @@ left:0;
 
 </div>
 
-<audio id="music">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f9c7e3df3.mp3">
-</audio>
-
 <script>
 
-let music=document.getElementById("music")
-
-setTimeout(()=>{music.play()},2000)
-
-/* intro transition */
+/* PAGE TRANSITION */
 
 setTimeout(()=>{
-document.getElementById("intro").style.display="none"
-document.getElementById("name").style.display="block"
-},3000)
+
+document.getElementById("firstPage").style.display="none"
+document.getElementById("darkScene").style.display="block"
+
+},4000)
+
+/* CANDLES ONLY FIRST */
 
 setTimeout(()=>{
-document.getElementById("cakeScene").style.display="block"
-},4500)
 
-/* blow candles */
+document.querySelector(".cake").style.opacity="0"
+
+},4000)
 
 setTimeout(()=>{
-document.querySelectorAll(".flame").forEach(f=>f.style.display="none")
+
+document.querySelector(".cake").style.opacity="1"
 startFireworks()
+
 },6000)
 
-/* petals */
-
-function createPetal(){
-
-let p=document.createElement("div")
-p.className="petal"
-p.innerHTML="🌹"
-p.style.left=Math.random()*100+"vw"
-p.style.animationDuration=(5+Math.random()*5)+"s"
-
-document.body.appendChild(p)
-
-setTimeout(()=>{p.remove()},10000)
-
-}
-
-setInterval(createPetal,400)
-
-/* fireworks */
+/* FIREWORKS */
 
 const canvas=document.getElementById("fireworks")
 const ctx=canvas.getContext("2d")
@@ -216,7 +187,7 @@ let particles=[]
 
 function createFirework(x,y){
 
-for(let i=0;i<120;i++){
+for(let i=0;i<150;i++){
 
 particles.push({
 x:x,
@@ -238,6 +209,12 @@ Math.random()*canvas.width,
 Math.random()*canvas.height/2
 )
 },600)
+
+/* FIREWORK TEXT */
+
+setTimeout(()=>{
+alert("🎆 Happy Birthday Vaishali 🎆")
+},3000)
 
 }
 
