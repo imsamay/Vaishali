@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Vaishali</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial, sans-serif;
+    text-align:center;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+    color:#ff4081;
+    font-size:40px;
+}
+
+p{
+    font-size:18px;
+    color:#333;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#ff4081;
+    color:white;
+    font-size:16px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e73370;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1>🎉 Happy Birthday Vaishali 🎉</h1>
+<p>You are special, unique and amazing.<br>
+May your day be filled with happiness and smiles.</p>
+
+<button onclick="showMessage()">Click for Surprise</button>
+
+<p id="msg" style="margin-top:20px;font-weight:bold;"></p>
+</div>
+
+<script>
+function showMessage(){
+    document.getElementById("msg").innerHTML =
+    "💖 Vaishali, today the world became more beautiful because you were born. 💖";
+}
+</script>
+
+</body>
+</html>
