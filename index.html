@@ -8,121 +8,73 @@
 
 body{
 margin:0;
-font-family:Arial;
 overflow:hidden;
+font-family:Arial;
 text-align:center;
 }
 
-/* ---------------- FIRST PAGE ---------------- */
+/* ---------- SCENE 1 ---------- */
 
-#firstPage{
+#scene1{
 height:100vh;
+background:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffd6e7,#cdb4db,#a2d2ff,#ffc8dd);
-background-size:400% 400%;
-animation:bgmove 10s infinite alternate;
-color:#d90429;
+position:relative;
 }
 
-@keyframes bgmove{
-0%{background-position:left}
-100%{background-position:right}
+#title{
+font-size:55px;
+color:#0077b6;
+margin-bottom:40px;
 }
 
-#firstPage h1{
-font-size:65px;
+.balloon{
+width:40px;
+height:50px;
+background:#90dbf4;
+border-radius:50%;
+position:absolute;
 }
 
-#firstPage p{
-font-size:24px;
-max-width:650px;
-color:#444;
+.balloon.white{
+background:white;
+border:2px solid #ccc;
 }
 
-/* ---------------- DARK SCENE ---------------- */
+.floorBalloon{
+bottom:20px;
+}
 
-#darkScene{
+/* switch */
+
+.switch{
+width:60px;
+height:30px;
+background:#ccc;
+border-radius:20px;
+position:absolute;
+right:40px;
+top:40px;
+}
+
+/* ---------- SCENE 2 ---------- */
+
+#scene2{
 display:none;
-background:#050505;
 height:100vh;
-color:white;
+background:black;
 position:relative;
 }
-
-/* message */
-
-#topMessage{
-position:absolute;
-top:8%;
-width:100%;
-font-size:48px;
-color:white;
-text-shadow:0 0 15px red;
-}
-
-/* ---------------- 3D CAKE ---------------- */
-
-.cake{
-position:absolute;
-bottom:120px;
-left:50%;
-transform:translateX(-50%);
-perspective:800px;
-}
-
-/* layers */
-
-.layer{
-margin:auto;
-border-radius:12px;
-box-shadow:
-0 8px 0 #4b2c20,
-0 0 20px rgba(255,120,120,0.6);
-}
-
-.layer1{
-width:260px;
-height:80px;
-background:linear-gradient(#5b3a29,#3b1f15);
-}
-
-.layer2{
-width:200px;
-height:70px;
-background:linear-gradient(#6b4226,#3d2317);
-margin-top:-12px;
-}
-
-.layer3{
-width:140px;
-height:60px;
-background:linear-gradient(#7a4b2a,#3f2518);
-margin-top:-12px;
-position:relative;
-}
-
-/* chocolate topping */
-
-.choco{
-position:absolute;
-width:100%;
-height:20px;
-background:#2d140c;
-top:0;
-border-radius:10px;
-}
-
-/* candles */
 
 .candle{
 width:12px;
-height:45px;
+height:60px;
 background:white;
 position:absolute;
-top:-45px;
+bottom:40%;
 }
 
 .flame{
@@ -132,19 +84,67 @@ background:orange;
 border-radius:50%;
 position:absolute;
 top:-14px;
-box-shadow:0 0 12px yellow;
+box-shadow:0 0 10px yellow;
 }
 
-#c1{left:25px}
-#c2{left:65px}
-#c3{left:105px}
-
-/* fireworks canvas */
+#c1{left:45%}
+#c2{left:50%}
+#c3{left:55%}
 
 canvas{
 position:absolute;
 top:0;
 left:0;
+}
+
+/* ---------- SCENE 3 ---------- */
+
+#scene3{
+display:none;
+height:100vh;
+background:white;
+position:relative;
+}
+
+#finalText{
+position:absolute;
+top:10%;
+width:100%;
+font-size:50px;
+color:#0077b6;
+}
+
+/* cake */
+
+.cake{
+position:absolute;
+bottom:120px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.layer{
+margin:auto;
+border-radius:10px;
+}
+
+.layer1{width:260px;height:80px;background:#ff7eb3;}
+.layer2{width:200px;height:70px;background:#ff9ac4;margin-top:-10px;}
+.layer3{width:140px;height:60px;background:#ffc1dc;margin-top:-10px;}
+
+/* confetti */
+
+.confetti{
+position:absolute;
+width:8px;
+height:8px;
+background:red;
+animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-20px)}
+100%{transform:translateY(110vh)}
 }
 
 </style>
@@ -153,36 +153,32 @@ left:0;
 
 <body>
 
-<!-- FIRST PAGE -->
+<!-- SCENE 1 -->
 
-<div id="firstPage">
+<div id="scene1">
 
-<h1>🎉 Happy Birthday Vaishali 🎉</h1>
+<div id="title">
+🎉 Happy Birthday Vaishali ♥️🫶🏻
+</div>
 
-<p>
-Today is not just another day…  
-because someone incredibly special was born.  
-Vaishali, may your life always be filled with laughter,  
-dreams, and beautiful moments. 💖✨
-</p>
+<div class="switch"></div>
+
+<div class="balloon" style="left:20%;top:20%"></div>
+<div class="balloon white" style="left:30%;top:25%"></div>
+<div class="balloon" style="left:70%;top:22%"></div>
+<div class="balloon white" style="left:60%;top:18%"></div>
+
+<div class="balloon floorBalloon" style="left:25%"></div>
+<div class="balloon white floorBalloon" style="left:50%"></div>
+<div class="balloon floorBalloon" style="left:75%"></div>
 
 </div>
 
-<!-- DARK SCENE -->
+<!-- SCENE 2 -->
 
-<div id="darkScene">
+<div id="scene2">
 
 <canvas id="fireworks"></canvas>
-
-<div id="topMessage">
-❤️ Happy Birthday Vaishali ❤️
-</div>
-
-<div class="cake">
-
-<div class="layer layer3">
-
-<div class="choco"></div>
 
 <div class="candle" id="c1"><div class="flame"></div></div>
 <div class="candle" id="c2"><div class="flame"></div></div>
@@ -190,21 +186,40 @@ dreams, and beautiful moments. 💖✨
 
 </div>
 
+<!-- SCENE 3 -->
+
+<div id="scene3">
+
+<div id="finalText">
+🎂 Happy Birthday Vaishali ❤️
+</div>
+
+<div class="cake">
+<div class="layer layer3"></div>
 <div class="layer layer2"></div>
 <div class="layer layer1"></div>
-
 </div>
 
 </div>
 
 <script>
 
-/* transition to dark scene */
+/* scene transitions */
 
 setTimeout(()=>{
-document.getElementById("firstPage").style.display="none"
-document.getElementById("darkScene").style.display="block"
-},5000)
+document.getElementById("scene1").style.display="none"
+document.getElementById("scene2").style.display="block"
+},2500)
+
+setTimeout(()=>{
+startFireworks()
+},5500)
+
+setTimeout(()=>{
+document.getElementById("scene2").style.display="none"
+document.getElementById("scene3").style.display="block"
+createConfetti()
+},8000)
 
 /* fireworks */
 
@@ -235,15 +250,10 @@ life:100
 function startFireworks(){
 
 setInterval(()=>{
-createFirework(
-Math.random()*canvas.width,
-Math.random()*canvas.height/2
-)
-},600)
+createFirework(Math.random()*canvas.width,Math.random()*canvas.height/2)
+},500)
 
 }
-
-setTimeout(startFireworks,7000)
 
 function animate(){
 
@@ -259,9 +269,7 @@ p.life--
 ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)"
 ctx.fillRect(p.x,p.y,3,3)
 
-if(p.life<=0){
-particles.splice(i,1)
-}
+if(p.life<=0) particles.splice(i,1)
 
 })
 
@@ -270,6 +278,26 @@ requestAnimationFrame(animate)
 }
 
 animate()
+
+/* confetti */
+
+function createConfetti(){
+
+setInterval(()=>{
+
+let c=document.createElement("div")
+c.className="confetti"
+
+c.style.left=Math.random()*100+"vw"
+c.style.background="hsl("+Math.random()*360+",100%,50%)"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{c.remove()},4000)
+
+},200)
+
+}
 
 </script>
 
