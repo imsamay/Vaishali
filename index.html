@@ -1,132 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Vaishali</title>
+<title>Happy Birthday Vaishali 🎂</title>
 
 <style>
 
 body{
-margin:0;
-font-family:Arial;
-overflow:hidden;
-text-align:center;
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg,#ff4e50,#fc913a);
+    text-align:center;
+    overflow-x:hidden;
 }
 
-/* -------- Scene 1 -------- */
-
-#scene1{
-height:100vh;
-background:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-position:relative;
+h1{
+    font-size:60px;
+    color:white;
+    margin-top:40px;
+    text-shadow:0 0 20px #fff;
+    animation: glow 2s infinite alternate;
 }
 
-#banner{
-font-size:65px;
-color:#0077b6;
-z-index:2;
+@keyframes glow{
+from{ text-shadow:0 0 10px #fff;}
+to{ text-shadow:0 0 30px #fff,0 0 40px pink;}
 }
 
-/* balloons */
-
-.balloon{
-width:50px;
-height:65px;
-border-radius:50%;
-position:absolute;
+.message{
+    color:white;
+    font-size:24px;
+    margin-bottom:40px;
 }
 
-.blue{background:#4cc9f0;}
-.white{background:white;border:2px solid #ddd;}
-
-/* -------- Scene 2 -------- */
-
-#scene2{
-display:none;
-height:100vh;
-background:black;
-position:relative;
+.gallery{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
 }
 
-.candle{
-width:12px;
-height:60px;
-background:white;
-position:absolute;
-bottom:45%;
+.gallery img{
+    width:320px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:0.4s;
 }
 
-.flame{
-width:14px;
-height:14px;
-background:orange;
-border-radius:50%;
-position:absolute;
-top:-14px;
-box-shadow:0 0 12px yellow;
+.gallery img:hover{
+    transform:scale(1.05);
 }
-
-#c1{left:47%}
-#c2{left:50%}
-#c3{left:53%}
-
-canvas{
-position:absolute;
-top:0;
-left:0;
-}
-
-/* -------- Scene 3 -------- */
-
-#scene3{
-display:none;
-height:100vh;
-background:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-position:relative;
-}
-
-#finalText{
-font-size:60px;
-color:#0077b6;
-margin-bottom:40px;
-}
-
-/* cake */
 
 .cake{
-position:relative;
+    font-size:120px;
+    margin-top:30px;
 }
 
-.layer{
-margin:auto;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
+.balloon{
+    position:fixed;
+    bottom:-150px;
+    font-size:50px;
+    animation: float 8s infinite;
 }
 
-.l1{width:340px;height:70px;background:#ff7eb3;}
-.l2{width:280px;height:65px;background:#ff9ac4;margin-top:-10px;}
-.l3{width:220px;height:60px;background:#ffc1dc;margin-top:-10px;}
-.l4{width:170px;height:55px;background:#ffd6e7;margin-top:-10px;}
-.l5{width:120px;height:50px;background:#ffe5ec;margin-top:-10px;}
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-120vh);}
+}
 
 .confetti{
-position:absolute;
-width:8px;
-height:8px;
-animation:fall 4s linear infinite;
+    position:fixed;
+    width:10px;
+    height:10px;
+    background:yellow;
+    animation:fall 5s linear infinite;
 }
 
 @keyframes fall{
-0%{transform:translateY(-20px)}
-100%{transform:translateY(110vh)}
+0%{transform:translateY(-100vh);}
+100%{transform:translateY(100vh);}
 }
 
 </style>
@@ -134,148 +86,54 @@ animation:fall 4s linear infinite;
 
 <body>
 
-<!-- Scene 1 -->
+<h1>🎉 Happy Birthday Vaishali 🎉</h1>
 
-<div id="scene1">
-
-<div id="banner">
-🎉 Happy Birthday Vaishali ♥️🫶🏻
-</div>
-
-</div>
-
-<!-- Scene 2 -->
-
-<div id="scene2">
-
-<canvas id="fireworks"></canvas>
-
-<div class="candle" id="c1"><div class="flame"></div></div>
-<div class="candle" id="c2"><div class="flame"></div></div>
-<div class="candle" id="c3"><div class="flame"></div></div>
-
-</div>
-
-<!-- Scene 3 -->
-
-<div id="scene3">
-
-<div id="finalText">
-🎂 Happy Birthday Vaishali ❤️
-</div>
+<p class="message">
+Wishing you a day filled with happiness, love and surprises! 🎂💖
+</p>
 
 <div class="cake">
-<div class="layer l5"></div>
-<div class="layer l4"></div>
-<div class="layer l3"></div>
-<div class="layer l2"></div>
-<div class="layer l1"></div>
+🎂🕯️🕯️🕯️
 </div>
+
+<div class="gallery">
+
+<img src="photo1.jpg">
+<img src="photo2.jpg">
 
 </div>
 
 <script>
 
-/* create many balloons */
+/* Balloons */
 
-for(let i=0;i<60;i++){
+for(let i=0;i<12;i++){
 
-let b=document.createElement("div")
+let balloon=document.createElement("div")
+balloon.className="balloon"
+balloon.innerHTML="🎈"
 
-b.className="balloon "+(i%2==0?"blue":"white")
+balloon.style.left=Math.random()*100+"%"
+balloon.style.animationDuration=5+Math.random()*5+"s"
 
-b.style.left=Math.random()*100+"vw"
-b.style.top=Math.random()*100+"vh"
-
-document.getElementById("scene1").appendChild(b)
-
-}
-
-/* scene timing */
-
-setTimeout(()=>{
-document.getElementById("scene1").style.display="none"
-document.getElementById("scene2").style.display="block"
-},2500)
-
-setTimeout(startFireworks,5500)
-
-setTimeout(()=>{
-document.getElementById("scene2").style.display="none"
-document.getElementById("scene3").style.display="flex"
-confetti()
-},8000)
-
-/* fireworks */
-
-const canvas=document.getElementById("fireworks")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-function firework(x,y){
-
-for(let i=0;i<120;i++){
-
-particles.push({
-x:x,
-y:y,
-angle:Math.random()*Math.PI*2,
-speed:Math.random()*5+2,
-life:100
-})
+document.body.appendChild(balloon)
 
 }
 
-}
+/* Confetti */
 
-function startFireworks(){
+for(let i=0;i<80;i++){
 
-setInterval(()=>{
-firework(Math.random()*canvas.width,Math.random()*canvas.height/2)
-},500)
+let confetti=document.createElement("div")
+confetti.className="confetti"
 
-}
+confetti.style.left=Math.random()*100+"%"
+confetti.style.background=
+`hsl(${Math.random()*360},100%,50%)`
 
-function animate(){
+confetti.style.animationDuration=3+Math.random()*4+"s"
 
-ctx.fillStyle="rgba(0,0,0,0.2)"
-ctx.fillRect(0,0,canvas.width,canvas.height)
-
-particles.forEach((p,i)=>{
-
-p.x+=Math.cos(p.angle)*p.speed
-p.y+=Math.sin(p.angle)*p.speed
-p.life--
-
-ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)"
-ctx.fillRect(p.x,p.y,3,3)
-
-if(p.life<=0) particles.splice(i,1)
-
-})
-
-requestAnimationFrame(animate)
-
-}
-
-animate()
-
-/* confetti */
-
-function confetti(){
-
-setInterval(()=>{
-let c=document.createElement("div")
-c.className="confetti"
-c.style.left=Math.random()*100+"vw"
-c.style.background="hsl("+Math.random()*360+",100%,50%)"
-document.body.appendChild(c)
-setTimeout(()=>c.remove(),4000)
-},200)
+document.body.appendChild(confetti)
 
 }
 
