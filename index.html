@@ -2,40 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Vaishali ❤️</title>
+<title>Happy Birthday Vaishali</title>
 
 <style>
 
 body{
 margin:0;
-height:100vh;
+overflow:hidden;
+font-family:sans-serif;
 background:linear-gradient(135deg,#ff758c,#ff7eb3);
 display:flex;
 justify-content:center;
 align-items:center;
-font-family:Arial;
-overflow:hidden;
+height:100vh;
 color:white;
 text-align:center;
 }
 
-.container{
-z-index:2;
-}
-
 h1{
 font-size:50px;
-margin-bottom:10px;
+margin-bottom:20px;
 }
 
-#message{
+#text{
 font-size:22px;
-height:40px;
+min-height:40px;
 }
 
 button{
 margin-top:20px;
-padding:12px 25px;
+padding:12px 30px;
 font-size:18px;
 border:none;
 border-radius:10px;
@@ -45,33 +41,25 @@ cursor:pointer;
 }
 
 button:hover{
-background:#ffe4ec;
+background:#ffd9e6;
+}
+
+canvas{
+position:absolute;
+top:0;
+left:0;
 }
 
 .heart{
 position:absolute;
-bottom:-20px;
-font-size:24px;
-animation:float 6s linear infinite;
+bottom:-30px;
+font-size:22px;
+animation:rise linear infinite;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-110vh);}
-}
-
-.confetti{
-position:absolute;
-width:10px;
-height:10px;
-background:white;
-top:-10px;
-animation:fall 5s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(0) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
+@keyframes rise{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
 }
 
 </style>
@@ -79,31 +67,34 @@ animation:fall 5s linear infinite;
 
 <body>
 
-<div class="container">
+<canvas id="confetti"></canvas>
 
+<div>
 <h1>🎉 Happy Birthday Vaishali 🎉</h1>
-
-<div id="message"></div>
-
-<button onclick="surprise()">Click for Surprise 💖</button>
-
+<div id="text"></div>
+<button onclick="startSurprise()">Open Your Surprise 💖</button>
 </div>
 
-<audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<audio id="music">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f9c7e3df3.mp3?filename=happy-birthday-126188.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-let text="Vaishali, you make the world brighter just by being in it ❤️";
-let i=0;
+let message="Vaishali, today is special because the world got someone as beautiful and amazing as you. May your smile always shine like the brightest star. 💖";
 
+let i=0;
 function type(){
-if(i<text.length){
-document.getElementById("message").innerHTML+=text.charAt(i);
+if(i<message.length){
+document.getElementById("text").innerHTML+=message.charAt(i);
 i++;
-setTimeout(type,60);
+setTimeout(type,50);
 }
+}
+
+function startSurprise(){
+document.getElementById("music").play();
+alert("🎂 Happy Birthday Vaishali! You deserve all the happiness in the world. 💖");
 }
 
 type();
@@ -113,30 +104,47 @@ let heart=document.createElement("div");
 heart.className="heart";
 heart.innerHTML="💖";
 heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(3+Math.random()*3)+"s";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
 document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),6000);
+setTimeout(()=>heart.remove(),8000);
 }
 
 setInterval(createHeart,300);
 
-function createConfetti(){
-let confetti=document.createElement("div");
-confetti.className="confetti";
-confetti.style.left=Math.random()*100+"vw";
-confetti.style.background="hsl("+Math.random()*360+"deg,100%,50%)";
-document.body.appendChild(confetti);
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-setTimeout(()=>confetti.remove(),5000);
+let pieces=[];
+for(let i=0;i<120;i++){
+pieces.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:5+Math.random()*5,
+speed:1+Math.random()*3,
+angle:Math.random()*360
+});
 }
 
-setInterval(createConfetti,200);
+function update(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-function surprise(){
-document.getElementById("music").play();
-alert("💖 Vaishali, today is all about you. Keep shining and smiling always! 💖");
+pieces.forEach(p=>{
+ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+ctx.fillRect(p.x,p.y,p.size,p.size);
+p.y+=p.speed;
+
+if(p.y>canvas.height){
+p.y=0;
+p.x=Math.random()*canvas.width;
 }
+});
+
+requestAnimationFrame(update);
+}
+
+update();
 
 </script>
 
