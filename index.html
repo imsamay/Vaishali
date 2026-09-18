@@ -1,1504 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>My Moon 🌙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Moon ❤️</title>
 
 <style>
-
-/* =========================================
-   RESET
-========================================= */
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
+    overflow:hidden;
+    font-family:"Georgia",serif;
 }
 
 body{
-
-    overflow:hidden;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            #28345f,
-            #101735 60%,
-            #070b1d
-        );
-
+    background:#ffdce8;
+    color:#5b263b;
 }
 
+/* =========================
+   BACKGROUND
+========================= */
 
-/* =========================================
-   HIDE CHECKBOXES
-========================================= */
-
-.flip{
-    display:none;
+.bg{
+    position:fixed;
+    inset:-25px;
+    background-image:url("assets/photo1.jpg");
+    background-size:cover;
+    background-position:center;
+    filter:blur(18px);
+    transform:scale(1.08);
+    z-index:-3;
 }
 
+.bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,205,220,.72);
+}
 
-/* =========================================
-   BOOK AREA
-========================================= */
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart{
+    position:fixed;
+    color:rgba(255,255,255,.7);
+    font-size:22px;
+    pointer-events:none;
+    animation:float 7s linear infinite;
+    z-index:2;
+}
+
+.h1{left:8%;bottom:-30px;animation-delay:0s}
+.h2{left:25%;bottom:-30px;animation-delay:2s;font-size:17px}
+.h3{left:48%;bottom:-30px;animation-delay:4s}
+.h4{left:70%;bottom:-30px;animation-delay:1s;font-size:18px}
+.h5{left:88%;bottom:-30px;animation-delay:3s}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    15%{opacity:1}
+    100%{
+        transform:translateY(-110vh) rotate(25deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   BOOK
+========================= */
 
 .book{
-
-    position:relative;
-
-    width:100vw;
+    width:100%;
     height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
+    position:relative;
     perspective:1800px;
-
 }
 
-
-/* =========================================
-   PAGE
-========================================= */
+/* Each page */
 
 .page{
-
     position:absolute;
-
-    width:min(90vw,720px);
-
-    height:min(88vh,820px);
-
-    top:50%;
-    left:50%;
-
-    transform:
-        translate(-50%,-50%);
-
+    inset:0;
+    width:100%;
+    height:100%;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     transform-origin:left center;
-
-    transform-style:preserve-3d;
-
-    transition:
-        transform 1s
-        cubic-bezier(.65,.05,.35,1);
-
-    border-radius:8px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.5);
-
+    transition:transform .9s cubic-bezier(.65,.05,.36,1);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
 }
 
+/* page card */
 
-/* =========================================
-   PAGE STACK
-========================================= */
+.content{
+    width:min(92%,520px);
+    max-height:88vh;
+    overflow:auto;
+    padding:35px 25px;
+    border-radius:28px;
+    background:rgba(255,245,248,.82);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:
+        0 15px 45px rgba(103,35,62,.18),
+        inset 0 0 30px rgba(255,255,255,.35);
+    text-align:center;
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+}
+
+/* scrollbar */
+
+.content::-webkit-scrollbar{
+    width:4px;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background:#e99ab3;
+    border-radius:10px;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1{
+    font-size:clamp(38px,10vw,65px);
+    color:#9d3f61;
+    margin-bottom:15px;
+    font-style:italic;
+}
+
+h2{
+    font-size:clamp(28px,7vw,42px);
+    color:#9d3f61;
+    margin-bottom:18px;
+}
+
+h3{
+    color:#b14d70;
+    margin-bottom:12px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.75;
+}
+
+.small{
+    font-size:14px;
+    opacity:.7;
+    margin-top:12px;
+}
+
+.emoji{
+    font-size:30px;
+    margin:10px 0 18px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.next{
+    display:inline-block;
+    margin-top:25px;
+    padding:13px 28px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#e9799c,#c84f78);
+    color:white;
+    text-decoration:none;
+    font-family:Arial,sans-serif;
+    font-size:15px;
+    box-shadow:0 8px 20px rgba(160,54,91,.25);
+    cursor:pointer;
+}
+
+.next:active{
+    transform:scale(.96);
+}
+
+/* =========================
+   PAGE 1
+========================= */
 
 .page1{
     z-index:6;
 }
 
-.page2{
-    z-index:5;
+.page1 .content{
+    padding-top:45px;
+    padding-bottom:45px;
 }
 
-.page3{
-    z-index:4;
-}
-
-.page4{
-    z-index:3;
-}
-
-.page5{
-    z-index:2;
-}
-
-.page6{
-    z-index:1;
-}
-
-
-/* =========================================
-   FLIP
-========================================= */
-
-#flip1:checked ~ .book .page1{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
-
-}
-
-
-#flip2:checked ~ .book .page2{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
-
-}
-
-
-#flip3:checked ~ .book .page3{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
-
-}
-
-
-#flip4:checked ~ .book .page4{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
-
-}
-
-
-#flip5:checked ~ .book .page5{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
-
-}
-
-
-/* =========================================
-   FRONT + BACK OF PAGE
-========================================= */
-
-.front,
-.back{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    backface-visibility:hidden;
-
-}
-
-
-/* =========================================
-   BACK SIDE
-========================================= */
-
-.back{
-
-    transform:
-        rotateY(180deg);
-
-}
-
-
-/* =========================================
-   PAGE COLORS
-========================================= */
-
-.pink{
-
-    background:
-
-        radial-gradient(
-            circle at 50% 10%,
-            rgba(255,255,255,.9),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            145deg,
-            #fff3f7,
-            #f8c9da,
-            #e9a9c2
-        );
-
-    color:#643047;
-
-}
-
-
-.night{
-
-    background:
-
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(130,150,255,.22),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            180deg,
-            #070c29,
-            #11183d,
-            #292552
-        );
-
-    color:white;
-
-}
-
-
-/* =========================================
-   CONTENT
-========================================= */
-
-.content{
-
-    width:100%;
-    height:100%;
-
-    padding:45px 35px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    position:relative;
-
-}
-
-
-.eyebrow{
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size:11px;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    opacity:.65;
-
-    margin-bottom:18px;
-
-}
-
-
-h1,
-h2{
-
-    font-style:italic;
-
-}
-
-
-h1{
-
-    font-size:
-        clamp(55px,12vw,100px);
-
-    line-height:.9;
-
-    margin-bottom:25px;
-
-}
-
-
-h2{
-
-    font-size:
-        clamp(35px,7vw,60px);
-
-    line-height:1.05;
-
-    margin-bottom:20px;
-
-}
-
-
-.text{
-
-    max-width:550px;
-
-    font-size:
-        clamp(18px,3vw,24px);
-
-    line-height:1.6;
-
-}
-
-
-.small{
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    max-width:560px;
-
-    font-size:15px;
-
-    line-height:1.6;
-
-}
-
-
-/* =========================================
-   MOON
-========================================= */
-
-.moon{
-
-    width:120px;
-    height:120px;
-
-    border-radius:50%;
-
-    margin-bottom:25px;
-
-    background:
-
-        radial-gradient(
-            circle at 30% 28%,
-            white,
-            #ffeab9 48%,
-            #d4a36d
-        );
-
-    box-shadow:
-
-        0 0 25px white,
-
-        0 0 70px
-        rgba(255,230,180,.7);
-
-}
-
-
-/* =========================================
-   STARS
-========================================= */
-
-.stars{
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size:34px;
-
-    letter-spacing:10px;
-
-    margin:10px 0 25px;
-
-}
-
-
-/* =========================================
-   BUTTON
-========================================= */
-
-.next{
-
-    display:inline-block;
-
-    margin-top:28px;
-
-    padding:
-        13px 26px;
-
-    border-radius:50px;
-
-    background:#b94f78;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+.from{
+    font-family:Arial,sans-serif;
     font-size:14px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 8px 22px
-        rgba(100,30,60,.25);
-
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.65;
+    margin-bottom:15px;
 }
 
-
-.next:hover{
-
-    transform:
-        translateY(-2px);
-
+.love{
+    font-size:21px;
+    line-height:1.8;
+    margin-top:18px;
 }
 
-
-.back{
-
-    position:absolute;
-
-    bottom:20px;
-
-    left:20px;
-
-    padding:
-        8px 15px;
-
-    border-radius:30px;
-
-    border:
-        1px solid currentColor;
-
-    background:
-        rgba(255,255,255,.12);
-
-    color:inherit;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size:12px;
-
-    text-decoration:none;
-
-}
-
-
-/* =========================================
-   PAGE NUMBER
-========================================= */
-
-.number{
-
-    position:absolute;
-
-    right:20px;
-
-    bottom:20px;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size:11px;
-
-    opacity:.5;
-
-}
-
-
-/* =========================================
-   PHOTO GALLERY
-========================================= */
+/* =========================
+   GALLERY
+========================= */
 
 .gallery{
-
-    width:100%;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:8px;
-
-    margin-top:10px;
-
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
 }
 
-
-.photo{
-
-    height:125px;
-
-    border-radius:12px;
-
-    overflow:hidden;
-
-    background:white;
-
-}
-
-
-.photo img{
-
+.gallery img{
     width:100%;
-    height:100%;
-
+    aspect-ratio:1/1;
     object-fit:cover;
-
-    display:block;
-
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(91,38,59,.15);
+    transition:transform .25s;
 }
 
+.gallery img:active{
+    transform:scale(.97);
+}
 
-/* =========================================
-   ROMANTIC LINES
-========================================= */
+/* =========================
+   LETTER
+========================= */
 
-.lines{
+.letter{
+    text-align:left;
+    background:rgba(255,235,241,.65);
+    padding:20px;
+    border-radius:20px;
+    margin-top:18px;
+}
 
-    max-width:550px;
+.letter p{
+    font-size:17px;
+}
 
-    font-size:
-        clamp(20px,4vw,30px);
+/* =========================
+   STARS
+========================= */
 
-    font-style:italic;
+.stars{
+    font-size:27px;
+    letter-spacing:8px;
+    margin:15px 0;
+}
 
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    font-size:21px;
     line-height:1.8;
-
+    margin:20px 0;
 }
-
-
-/* =========================================
-   PROPOSAL
-========================================= */
 
 .proposal{
-
-    margin-top:25px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:18px;
-
+    font-size:32px;
+    font-weight:bold;
+    color:#a63861;
+    margin:20px 0;
 }
 
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
 
 .yes{
-
-    padding:
-        14px 28px;
-
-    border:none;
-
-    border-radius:50px;
-
-    background:#bd5278;
-
-    color:white;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-weight:700;
-
-    font-size:15px;
-
+    background:linear-gradient(135deg,#e45b87,#b83262);
 }
-
 
 .no{
-
-    padding:
-        14px 28px;
-
-    border-radius:50px;
-
-    border:
-        1px solid #dda5ba;
-
-    background:white;
-
-    color:#bd5278;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-weight:700;
-
-    font-size:15px;
-
+    background:#fff;
+    color:#a63861;
+    border:1px solid #e8a2b7;
 }
 
+/* =========================
+   CSS PAGE TURN
+========================= */
 
-/* =========================================
+#p1:checked ~ .book .page1{
+    transform:rotateY(-180deg);
+}
+
+#p2:checked ~ .book .page2{
+    transform:rotateY(-180deg);
+}
+
+#p3:checked ~ .book .page3{
+    transform:rotateY(-180deg);
+}
+
+#p4:checked ~ .book .page4{
+    transform:rotateY(-180deg);
+}
+
+#p5:checked ~ .book .page5{
+    transform:rotateY(-180deg);
+}
+
+/* stacking */
+
+.page2{z-index:5}
+.page3{z-index:4}
+.page4{z-index:3}
+.page5{z-index:2}
+.page6{z-index:1}
+
+/* =========================
    MOBILE
-========================================= */
+========================= */
 
-@media(max-width:600px){
-
-    .page{
-
-        width:94vw;
-
-        height:92vh;
-
-    }
-
-
-    .content{
-
-        padding:
-            30px 18px;
-
-    }
-
-
-    .gallery{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-
-    .photo{
-
-        height:110px;
-
-    }
-
-
-    .moon{
-
-        width:100px;
-
-        height:100px;
-
-    }
-
-
-    .small{
-
-        font-size:14px;
-
-    }
-
-}
-
-
-/* =========================================
-   VERY SMALL PHONES
-========================================= */
-
-@media(max-height:650px){
+@media(max-width:500px){
 
     .page{
-
-        height:94vh;
-
+        padding:16px;
     }
-
 
     .content{
-
-        padding:
-            20px 15px;
-
+        width:94%;
+        max-height:91vh;
+        padding:28px 19px;
+        border-radius:24px;
     }
 
-
-    .moon{
-
-        width:80px;
-        height:80px;
-
-        margin-bottom:15px;
-
+    p{
+        font-size:17px;
     }
 
+    .love{
+        font-size:19px;
+    }
 
     .gallery{
-
-        gap:5px;
-
+        gap:9px;
     }
 
-
-    .photo{
-
-        height:85px;
-
+    .letter{
+        padding:17px;
     }
 
+    .letter p{
+        font-size:16px;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<!-- BLURRED PHOTO 1 BACKGROUND -->
+<div class="bg"></div>
 
-<!-- =================================================
-     THE FIVE FLIP SWITCHES
-     No JavaScript required.
-================================================= -->
+<!-- FLOATING HEARTS -->
+<div class="heart h1">♥</div>
+<div class="heart h2">♡</div>
+<div class="heart h3">♥</div>
+<div class="heart h4">♡</div>
+<div class="heart h5">♥</div>
 
-<input
-type="checkbox"
-id="flip1"
-class="flip">
-
-<input
-type="checkbox"
-id="flip2"
-class="flip">
-
-<input
-type="checkbox"
-id="flip3"
-class="flip">
-
-<input
-type="checkbox"
-id="flip4"
-class="flip">
-
-<input
-type="checkbox"
-id="flip5"
-class="flip">
+<!-- PAGE CONTROLS -->
+<input type="checkbox" id="p1" hidden>
+<input type="checkbox" id="p2" hidden>
+<input type="checkbox" id="p3" hidden>
+<input type="checkbox" id="p4" hidden>
+<input type="checkbox" id="p5" hidden>
 
 
 <div class="book">
 
+<!-- ================= PAGE 1 ================= -->
 
-<!-- =================================================
-     PAGE 1
-================================================= -->
-
-<div class="page page1">
-
-<div class="front pink">
+<section class="page page1">
 
 <div class="content">
 
-    <div class="eyebrow">
+<div class="from">A little something for you...</div>
 
-        A little something for you...
+<h1>My Moon 🌙</h1>
 
-    </div>
+<div class="emoji">💗✨🥰</div>
 
+<p class="love">
+Bacha I love you so muchh ❤️🥰💝💗💋
+</p>
 
-    <div class="moon"></div>
+<p class="love">
+I just want you to know that
+<br>
+<strong>you will always be loved by me...</strong>
+</p>
 
+<p class="love">
+No matter what happens. 💓❤️
+</p>
 
-    <h1>
-
-        My Moon
-
-    </h1>
-
-
-    <div class="text">
-
-        My name is <b>Akashh</b>. ❤️
-
-        <br><br>
-
-        I made this little world
-        just for you.
-
-        <br><br>
-
-        Because some feelings
-        deserve more than words.
-
-    </div>
-
-
-    <label
-    for="flip1"
-    class="next">
-
-        Next Glimpse → 🌙
-
-    </label>
-
-
-    <div class="number">
-
-        1 / 6
-
-    </div>
+<label class="next" for="p1">
+Open my heart 💌
+</label>
 
 </div>
+</section>
 
-</div>
 
+<!-- ================= PAGE 2 ================= -->
 
-<div class="back pink">
+<section class="page page2">
 
 <div class="content">
 
-    <h2>
+<h2>Our Memories 📸</h2>
 
-        A Little Secret ❤️
+<p>
+Some moments become memories...
+and some memories become a part of your heart. ❤️
+</p>
 
-    </h2>
+<div class="gallery">
 
-    <div class="text">
-
-        Before you see everything...
-
-        <br><br>
-
-        I want you to know that
-        every page here was made
-        with you in my heart.
-
-        <br><br>
-
-        Keep going... 🌙
-
-    </div>
+<img src="assets/photo1.jpg" alt="Memory">
+<img src="assets/photo2.jpg" alt="Memory">
+<img src="assets/photo3.jpg" alt="Memory">
+<img src="assets/photo5.jpg" alt="Memory">
+<img src="assets/photo6.jpg" alt="Memory">
+<img src="assets/photo7.jpg" alt="Memory">
 
 </div>
 
-</div>
+<label class="next" for="p2">
+Next page 💕
+</label>
 
 </div>
+</section>
 
 
+<!-- ================= PAGE 3 ================= -->
 
-<!-- =================================================
-     PAGE 2
-================================================= -->
-
-<div class="page page2">
-
-<div class="front pink">
+<section class="page page3">
 
 <div class="content">
 
-    <div class="eyebrow">
+<h2>A Little Letter 💌</h2>
 
-        Little moments
+<div class="letter">
 
-    </div>
+<p>
+Bacha,
+</p>
 
+<br>
 
-    <h2>
+<p>
+I don't know if words will ever be enough
+to explain what you mean to me.
+</p>
 
-        Our Memories ❤️
+<br>
 
-    </h2>
+<p>
+But I want you to know one thing —
+wherever life takes us,
+a part of my heart will always choose you.
+❤️
+</p>
 
+<br>
 
-    <div class="small">
+<p>
+I don't promise that everything will always
+be perfect...
+</p>
 
-        Every picture has a little
-        piece of a memory attached to it.
+<br>
 
-    </div>
+<p>
+I only promise that my feelings for you
+are real.
+💗
+</p>
 
+<br>
 
-    <div class="gallery">
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo1.jpg"
-            alt="Memory 1">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo2.jpg"
-            alt="Memory 2">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo3.jpg"
-            alt="Memory 3">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo4.jpg"
-            alt="Memory 4">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo5.jpg"
-            alt="Memory 5">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo6.jpg"
-            alt="Memory 6">
-
-        </div>
-
-
-        <div class="photo">
-
-            <img
-            src="assets/photo7.jpg"
-            alt="Memory 7">
-
-        </div>
-
-
-    </div>
-
-
-    <label
-    for="flip2"
-    class="next">
-
-        Next Glimpse → 💗
-
-    </label>
-
-
-    <div class="number">
-
-        2 / 6
-
-    </div>
+<p>
+Always yours,
+<br>
+<strong>Akashh ❤️</strong>
+</p>
 
 </div>
 
+<label class="next" for="p3">
+Keep reading 🌙
+</label>
+
 </div>
+</section>
 
 
-<div class="back pink">
+<!-- ================= PAGE 4 ================= -->
+
+<section class="page page4">
 
 <div class="content">
 
-    <label
-    for="flip1"
-    class="back">
-
-        ← Back
-
-    </label>
-
+<div class="stars">
+✦ ✧ ✦ ✧ ✦
 </div>
 
+<h2>Moon & Stars 🌙</h2>
+
+<p>
+If I could give you one thing in this world,
+</p>
+
+<p style="margin-top:15px;">
+I would give you the ability to see yourself
+through my eyes.
+</p>
+
+<p style="margin-top:15px;">
+Then you would finally understand
+how special you are to me. ❤️
+</p>
+
+<div class="emoji">
+🌙 💗 ✨
 </div>
 
+<p>
+You are not just another person in my life...
+</p>
+
+<p style="margin-top:12px;">
+<strong>
+you became a beautiful part of it.
+</strong>
+</p>
+
+<label class="next" for="p4">
+One more thing... 💝
+</label>
+
 </div>
+</section>
 
 
+<!-- ================= PAGE 5 ================= -->
 
-<!-- =================================================
-     PAGE 3
-================================================= -->
-
-<div class="page page3">
-
-<div class="front pink">
+<section class="page page5">
 
 <div class="content">
 
-    <div class="eyebrow">
+<h2>Just For You 💕</h2>
 
-        From my heart
+<p>
+You're the thought that randomly makes me smile.
+</p>
 
-    </div>
+<p style="margin-top:15px;">
+The person I want to tell little things to.
+</p>
 
+<p style="margin-top:15px;">
+The person who somehow makes ordinary
+moments feel special.
+</p>
 
-    <div
-    style="
-    font-size:55px;
-    margin-bottom:15px;
-    ">
-
-        💗
-
-    </div>
-
-
-    <div class="text">
-
-        Bacha, I love you so muchh
-        ❤️🥰💝💗
-
-        <br><br>
-
-        I just want you to know
-        that you will always be
-        loved by me.
-
-        <br><br>
-
-        No matter what happens,
-        no matter where life takes us,
-        I will always wish happiness
-        for my Moon.
-
-        <br><br>
-
-        You are incredibly special
-        to me. ❤️
-
-    </div>
-
-
-    <div
-    style="
-    margin-top:18px;
-    font-family:Arial;
-    font-size:11px;
-    letter-spacing:2px;
-    opacity:.7;
-    ">
-
-        — AKASHH, WITH LOVE 🌙
-
-    </div>
-
-
-    <label
-    for="flip3"
-    class="next">
-
-        Next Glimpse → 💌
-
-    </label>
-
-
-    <div class="number">
-
-        3 / 6
-
-    </div>
-
+<div class="emoji">
+🥰 💋 ❤️ 💝
 </div>
 
+<p class="final">
+And if I ever forget to say it...
+</p>
+
+<p class="final">
+<strong>
+I LOVE YOU.
+</strong>
+</p>
+
+<label class="next" for="p5">
+The last page... 🌹
+</label>
+
 </div>
+</section>
 
 
-<div class="back pink">
+<!-- ================= PAGE 6 ================= -->
+
+<section class="page page6">
 
 <div class="content">
 
-    <label
-    for="flip2"
-    class="back">
+<div class="emoji">
+🌹💗🌙
+</div>
 
-        ← Back
+<h2>My Moon...</h2>
 
-    </label>
+<p class="final">
+U are so special to me bacha. ❤️
+</p>
+
+<p class="final">
+You are loved.
+<br>
+You are wanted.
+<br>
+You are precious to me.
+</p>
+
+<div class="proposal">
+Will you always stay with me? 💍
+</div>
+
+<div class="buttons">
+
+<a class="next yes" href="#">
+YES ❤️
+</a>
+
+<a class="next no" href="#">
+Always 💗
+</a>
 
 </div>
 
-</div>
+<p class="small">
+Made with all my heart — Akashh ❤️
+</p>
 
 </div>
-
-
-
-<!-- =================================================
-     PAGE 4
-================================================= -->
-
-<div class="page page4">
-
-<div class="front night">
-
-<div class="content">
-
-    <div class="eyebrow">
-
-        Look at the sky...
-
-    </div>
-
-
-    <div class="moon"></div>
-
-
-    <div class="stars">
-
-        ✨ ⭐ ✨
-
-    </div>
-
-
-    <h2>
-
-        The Moon & The Stars
-
-    </h2>
-
-
-    <div class="text">
-
-        You are like the moon...
-
-        <br><br>
-
-        Quietly shining,
-        even on the darkest nights.
-
-        <br><br>
-
-        And every star above
-        somehow reminds me of you.
-
-        <br><br>
-
-        Maybe that's why
-        the night feels beautiful
-        whenever I think of you. ❤️
-
-    </div>
-
-
-    <label
-    for="flip4"
-    class="next">
-
-        Next Glimpse → ⭐
-
-    </label>
-
-
-    <div class="number">
-
-        4 / 6
-
-    </div>
+</section>
 
 </div>
-
-</div>
-
-
-<div class="back night">
-
-<div class="content">
-
-    <label
-    for="flip3"
-    class="back">
-
-        ← Back
-
-    </label>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =================================================
-     PAGE 5
-================================================= -->
-
-<div class="page page5">
-
-<div class="front pink">
-
-<div class="content">
-
-    <div
-    style="
-    font-size:48px;
-    margin-bottom:15px;
-    ">
-
-        ♡
-
-    </div>
-
-
-    <div class="eyebrow">
-
-        A few lines for you
-
-    </div>
-
-
-    <div class="lines">
-
-        No matter how far we are,
-
-        <br>
-
-        no matter what happens...
-
-        <br><br>
-
-        I will always find you
-
-        <br>
-
-        in my thoughts,
-
-        <br>
-
-        in my dreams,
-
-        <br>
-
-        and in every beat
-        of my heart.
-
-        <br><br>
-
-        ❤️
-
-    </div>
-
-
-    <label
-    for="flip5"
-    class="next">
-
-        One Last Glimpse → 💌
-
-    </label>
-
-
-    <div class="number">
-
-        5 / 6
-
-    </div>
-
-</div>
-
-</div>
-
-
-<div class="back pink">
-
-<div class="content">
-
-    <label
-    for="flip4"
-    class="back">
-
-        ← Back
-
-    </label>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =================================================
-     PAGE 6
-================================================= -->
-
-<div class="page page6">
-
-<div class="front pink">
-
-<div class="content">
-
-    <div class="eyebrow">
-
-        Okay... this is it 😭
-
-    </div>
-
-
-    <div
-    style="
-    font-size:65px;
-    margin-bottom:15px;
-    ">
-
-        🌙
-
-    </div>
-
-
-    <h2>
-
-        Will you be mine? ❤️
-
-    </h2>
-
-
-    <div class="text">
-
-        Think carefully...
-
-        <br>
-
-        Actually,
-        don't think too much. 😂
-
-        <br><br>
-
-        Just listen to your heart. 💗
-
-    </div>
-
-
-    <div class="proposal">
-
-
-        <button
-        class="yes"
-        onclick="
-        document.getElementById('answer').style.display='block';
-        this.style.display='none';
-        document.getElementById('no').style.display='none';
-        ">
-
-            YES ❤️
-
-        </button>
-
-
-        <button
-        class="no"
-        id="no"
-        onclick="
-        this.style.position='fixed';
-        this.style.left=Math.random()*70+'vw';
-        this.style.top=Math.random()*70+'vh';
-        ">
-
-            NO 😭
-
-        </button>
-
-
-    </div>
-
-
-    <div
-    id="answer"
-    style="
-    display:none;
-    margin-top:25px;
-    font-size:28px;
-    line-height:1.5;
-    ">
-
-        I KNEW IT 😭❤️
-
-        <br>
-
-        My Moon said YES! 🌙💗
-
-        <br>
-
-        <span style="font-size:18px;">
-
-            Now come here. 🫂❤️
-
-        </span>
-
-    </div>
-
-
-    <div class="number">
-
-        6 / 6
-
-    </div>
-
-</div>
-
-</div>
-
-
-<div class="back pink">
-
-<div class="content">
-
-    <label
-    for="flip5"
-    class="back">
-
-        ← Back
-
-    </label>
-
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
 
 </body>
-
 </html>
