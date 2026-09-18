@@ -2,134 +2,747 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Vaishali 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffd6e5">
+
+<title>My Moon 🌙 — For You</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-body{
-margin:0;
-font-family:Arial;
-text-align:center;
-background:linear-gradient(135deg,#ffffff,#cfe9ff,#9fd3ff);
-overflow-x:hidden;
+:root{
+    --pink:#fff0f5;
+    --rose:#b84d73;
+    --deep:#632d45;
+    --muted:#85596b;
+    --glass:rgba(255,255,255,.65);
 }
 
-/* Title */
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--pink);
+    color:var(--deep);
+    font-family:'DM Sans',sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+
+    background:
+    radial-gradient(
+        circle at 15% 15%,
+        #fff 0 12%,
+        transparent 34%
+    ),
+
+    radial-gradient(
+        circle at 85% 75%,
+        #ffd2e2 0 10%,
+        transparent 34%
+    ),
+
+    linear-gradient(
+        135deg,
+        #fff5f8,
+        #ffe1ec
+    );
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    opacity:.22;
+
+    background-image:
+    radial-gradient(
+        #fff 1px,
+        transparent 1px
+    );
+
+    background-size:22px 22px;
+}
+
+section{
+    min-height:100svh;
+    display:grid;
+    place-items:center;
+    padding:28px 18px;
+    position:relative;
+}
+
+.card{
+    width:min(980px,100%);
+    padding:clamp(28px,5vw,60px);
+
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:34px;
+
+    background:var(--glass);
+
+    box-shadow:
+    0 30px 90px rgba(130,52,80,.16);
+
+    backdrop-filter:blur(18px);
+
+    text-align:center;
+}
+
+.eyebrow{
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:11px;
+    color:#a2677e;
+}
+
+.moon{
+    font-size:clamp(68px,13vw,120px);
+    line-height:1;
+    margin:18px 0 4px;
+
+    filter:
+    drop-shadow(
+        0 8px 15px
+        rgba(184,77,115,.2)
+    );
+}
+
+h1,
+h2{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--rose);
+    margin:0;
+    font-weight:600;
+}
 
 h1{
-font-size:60px;
-margin-top:40px;
-color:#004a8f;
-text-shadow:0 0 15px white;
+    font-size:clamp(58px,12vw,112px);
+    line-height:.9;
 }
 
-/* Message */
-
-.message{
-font-size:24px;
-color:#003d73;
-margin-bottom:30px;
+h2{
+    font-size:clamp(42px,8vw,72px);
 }
 
-/* Cake Section */
+.lead{
+    max-width:620px;
+    margin:24px auto;
 
-.cake-section{
-margin-top:40px;
-padding:40px;
-background:rgba(255,255,255,0.7);
-border-radius:25px;
-display:inline-block;
-box-shadow:0 0 40px rgba(0,140,255,0.3);
+    line-height:1.8;
+
+    color:var(--muted);
+
+    font-size:15px;
 }
 
-/* BIG cake and candles */
+.letter{
+    font-family:'Cormorant Garamond',serif;
 
-.cake{
-font-size:180px;
-filter:drop-shadow(0 0 20px white);
+    font-size:clamp(
+        24px,
+        4vw,
+        38px
+    );
+
+    line-height:1.35;
+
+    max-width:760px;
+
+    margin:28px auto;
+
+    color:#71334e;
 }
 
-.candles{
-font-size:120px;
-color:white;
-text-shadow:0 0 25px white,0 0 40px #4fc3ff;
-margin-top:-40px;
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:28px;
 }
 
-/* Photo gallery */
+button{
+    border:0;
+    border-radius:999px;
+
+    padding:14px 23px;
+
+    background:var(--rose);
+    color:#fff;
+
+    font:
+    600 14px
+    'DM Sans';
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 25px
+    rgba(184,77,115,.22);
+
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+button.secondary{
+    background:rgba(255,255,255,.8);
+
+    color:var(--rose);
+
+    border:1px solid #efbfd0;
+}
 
 .gallery{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-margin-top:40px;
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+    gap:12px;
+
+    margin:30px auto 0;
+
+    max-width:860px;
 }
 
-.gallery img{
-width:320px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
-transition:0.4s;
+.photo{
+    overflow:hidden;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 28px
+    rgba(100,45,69,.13);
+
+    background:#fff;
 }
 
-.gallery img:hover{
-transform:scale(1.08);
+.photo img{
+    display:block;
+
+    width:100%;
+    height:250px;
+
+    object-fit:cover;
+
+    transition:
+    transform .5s;
 }
 
-/* Balloons */
-
-.balloon{
-position:fixed;
-bottom:-100px;
-font-size:50px;
-animation:float 8s infinite;
+.photo:hover img{
+    transform:scale(1.045);
 }
 
-@keyframes float{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
+/* Photo layout */
+
+.photo:nth-child(1),
+.photo:nth-child(4){
+    grid-column:span 3;
+}
+
+.photo:nth-child(2),
+.photo:nth-child(3),
+.photo:nth-child(5),
+.photo:nth-child(6),
+.photo:nth-child(7){
+    grid-column:span 2;
+}
+
+.signature{
+    margin-top:25px;
+
+    color:#a2677e;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+}
+
+.heart{
+    display:inline-block;
+
+    animation:
+    beat 1.4s infinite;
+}
+
+@keyframes beat{
+
+    50%{
+        transform:scale(1.15);
+    }
+
+}
+
+.floating{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:5;
+}
+
+.float{
+    position:absolute;
+
+    top:-40px;
+
+    animation:
+    fall linear forwards;
+
+    opacity:.65;
+}
+
+@keyframes fall{
+
+    to{
+        transform:
+        translate3d(
+            var(--dx),
+            110vh,
+            0
+        )
+        rotate(280deg);
+
+        opacity:0;
+    }
+
+}
+
+@media(max-width:700px){
+
+    section{
+        padding:16px;
+    }
+
+    .card{
+        border-radius:26px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .photo:nth-child(n){
+        grid-column:span 1;
+    }
+
+    .photo img{
+        height:210px;
+    }
+
+    .photo:first-child{
+        grid-column:span 2;
+    }
+
+    .lead{
+        font-size:14px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .gallery{
+        gap:8px;
+    }
+
+    .photo img{
+        height:180px;
+    }
+
+    .card{
+        padding:28px 16px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<h1>🎉 Happy Birthday Vaishali 🎉</h1>
+<!-- Floating hearts -->
 
-<p class="message">
-Wishing you happiness, love and a magical birthday ❤️
-</p>
-
-<div class="cake-section">
-
-<div class="candles">🕯️🕯️🕯️</div>
-<div class="cake">🎂</div>
-
+<div
+    class="floating"
+    id="floating">
 </div>
 
-<div class="gallery">
 
-<img src="vaishali1.jpg">
-<img src="vaishali2.jpg">
+<!-- PAGE 1 -->
 
-</div>
+<section id="home">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            A little website made just for you
+        </div>
+
+
+        <div class="moon">
+            🌙
+        </div>
+
+
+        <h1>
+            My Moon
+        </h1>
+
+
+        <p class="lead">
+
+            My name is
+            <b>Akashh</b>.
+
+            <br><br>
+
+            And if I had to put everything
+            I feel into one tiny corner
+            of the internet…
+
+            <br>
+
+            it would look like this. ❤️
+
+        </p>
+
+
+        <div class="btns">
+
+            <button
+                onclick="go('memories')">
+
+                Open my heart 💗
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- PAGE 2 -->
+
+<section id="memories">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            A few little memories
+        </div>
+
+
+        <h2>
+            Us. ❤️
+        </h2>
+
+
+        <p class="lead">
+
+            Some moments don't need
+            a long explanation.
+
+            <br>
+
+            They just deserve to
+            be remembered.
+
+        </p>
+
+
+        <!-- PHOTO GALLERY -->
+
+        <div class="gallery">
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo1.jpg"
+                    alt="Our memory 1">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo2.jpg"
+                    alt="Our memory 2">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo3.jpg"
+                    alt="Our memory 3">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo4.png"
+                    alt="Our memory 4">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo5.jpg"
+                    alt="Our memory 5">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo6.jpg"
+                    alt="Our memory 6">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="assets/photo7.jpg"
+                    alt="Our memory 7">
+
+            </div>
+
+
+        </div>
+
+
+        <div class="btns">
+
+
+            <button
+                class="secondary"
+                onclick="go('home')">
+
+                ← Back
+
+            </button>
+
+
+            <button
+                onclick="go('letter')">
+
+                One last thing 💌
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- PAGE 3 -->
+
+<section id="letter">
+
+    <div class="card">
+
+
+        <div class="eyebrow">
+            For my Moon
+        </div>
+
+
+        <div class="heart">
+            💗
+        </div>
+
+
+        <div class="letter">
+
+
+            Bacha, I love you so muchh
+            ❤️🥰💝💗💋
+
+
+            <br><br>
+
+
+            You will always be loved
+            by me.
+
+            No matter what happens,
+            a part of my heart will
+            always wish happiness
+            for you.
+
+            💓❤️
+
+
+            <br><br>
+
+
+            You are incredibly special
+            to me, bacha.
+
+            💋❤️🥰
+
+
+        </div>
+
+
+        <div class="signature">
+
+            — AKASHH, WITH LOVE 🌙
+
+        </div>
+
+
+        <div class="btns">
+
+
+            <button
+                onclick="go('memories')">
+
+                See our memories again
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
 
 <script>
 
-for(let i=0;i<15;i++){
 
-let balloon=document.createElement("div")
-balloon.className="balloon"
-balloon.innerHTML="🎈"
+/* Smooth navigation */
 
-balloon.style.left=Math.random()*100+"%"
-balloon.style.animationDuration=5+Math.random()*5+"s"
+function go(id){
 
-document.body.appendChild(balloon)
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior:'smooth'
+    });
 
 }
+
+
+
+/* Floating hearts */
+
+const box =
+document.getElementById('floating');
+
+
+function sprinkle(){
+
+    const el =
+    document.createElement('span');
+
+
+    el.className =
+    'float';
+
+
+    el.textContent =
+    [
+        '♡',
+        '♥',
+        '✦',
+        '🌸'
+    ][
+        Math.floor(
+            Math.random()*4
+        )
+    ];
+
+
+    el.style.left =
+    Math.random()*100+'vw';
+
+
+    el.style.fontSize =
+    (
+        12+
+        Math.random()*18
+    )+'px';
+
+
+    el.style.setProperty(
+        '--dx',
+        (
+            Math.random()*180-90
+        )+'px'
+    );
+
+
+    el.style.animationDuration =
+    (
+        5+
+        Math.random()*6
+    )+'s';
+
+
+    box.appendChild(el);
+
+
+    setTimeout(
+        () => el.remove(),
+        12000
+    );
+
+}
+
+
+setInterval(
+    sprinkle,
+    700
+);
+
 
 </script>
 
