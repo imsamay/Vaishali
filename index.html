@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>My Moon 🌙</title>
 
+
 <style>
 
-/* ================================
-   RESET
-================================ */
+/* =========================================
+   BASIC
+========================================= */
 
 *{
     margin:0;
@@ -26,155 +32,187 @@ body{
 }
 
 body{
-    font-family:"Segoe UI",Arial,sans-serif;
-    background:#090d29;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#0c1030;
+
     color:white;
+
 }
 
 
-/* ================================
-   STARS
-================================ */
+/* =========================================
+   SMALL STAR BACKGROUND
+   Only 35 stars = much smoother
+========================================= */
 
 #stars{
+
     position:fixed;
+
     inset:0;
+
     pointer-events:none;
-    overflow:hidden;
+
     z-index:0;
+
 }
 
 .star{
+
     position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
+
+    width:2px;
+
+    height:2px;
+
     border-radius:50%;
 
+    background:white;
+
+    opacity:.65;
+
     animation:
-        twinkle 2s ease-in-out infinite alternate;
+        twinkle 3s ease-in-out infinite alternate;
+
 }
 
 @keyframes twinkle{
 
-    0%{
-        opacity:.15;
-        transform:scale(.6);
+    from{
+        opacity:.2;
+        transform:scale(.7);
     }
 
-    100%{
-        opacity:1;
-        transform:scale(1.4);
+    to{
+        opacity:.9;
+        transform:scale(1.2);
     }
 
 }
 
 
-/* ================================
+/* =========================================
    BOOK
-================================ */
+========================================= */
 
 .book{
 
     position:relative;
 
     width:100vw;
+
     height:100vh;
 
-    perspective:2200px;
+    perspective:1800px;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
+
+    justify-content:center;
+
 }
 
 
-/* ================================
-   PAGES
-================================ */
+/* =========================================
+   PAGE
+========================================= */
 
 .page{
 
     position:absolute;
 
     width:min(92vw,720px);
+
     height:min(92vh,850px);
 
     left:50%;
+
     top:50%;
 
     transform:
-        translate(-50%,-50%)
-        rotateY(0deg);
+        translate(-50%,-50%);
 
     transform-origin:left center;
 
-    transform-style:preserve-3d;
-
-    border-radius:8px;
+    border-radius:10px;
 
     overflow:hidden;
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.5);
+        0 25px 70px rgba(0,0,0,.5);
 
-    transition:
-        transform 1.05s
-        cubic-bezier(.65,.05,.35,1);
-
-    backface-visibility:hidden;
-
-    will-change:transform;
-}
-
-
-/* FLIPPED PAGE */
-
-.page.flipped{
-
-    transform:
-        translate(-50%,-50%)
-        rotateY(-180deg);
+    display:none;
 
 }
 
 
-/* PAGE SHADOW */
+/* currently visible */
 
-.page::after{
+.page.active{
 
-    content:"";
+    display:block;
 
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,.16),
-            transparent 12%,
-            transparent 82%,
-            rgba(255,255,255,.12)
-        );
+    z-index:10;
 
 }
 
 
-/* ================================
-   INNER
-================================ */
+/* page that is flipping */
+
+.page.turning{
+
+    display:block;
+
+    z-index:20;
+
+    animation:
+        pageFlip .85s
+        cubic-bezier(.65,.05,.35,1)
+        forwards;
+
+}
+
+
+@keyframes pageFlip{
+
+    0%{
+
+        transform:
+            translate(-50%,-50%)
+            rotateY(0deg);
+
+    }
+
+    100%{
+
+        transform:
+            translate(-50%,-50%)
+            rotateY(-180deg);
+
+    }
+
+}
+
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
 
 .inner{
 
-    position:relative;
-
     width:100%;
+
     height:100%;
 
-    padding:50px 42px;
+    padding:45px 35px;
+
+    position:relative;
 
     display:flex;
 
@@ -189,13 +227,13 @@ body{
 }
 
 
-/* ================================
-   PINK
-================================ */
+/* =========================================
+   PINK PAGE
+========================================= */
 
 .pink{
 
-    color:#612b45;
+    color:#642d49;
 
     background:
 
@@ -208,16 +246,16 @@ body{
         linear-gradient(
             145deg,
             #ffeaf2,
-            #f7bfd4,
-            #e9a2be
+            #f6bfd4,
+            #e7a0bc
         );
 
 }
 
 
-/* ================================
-   NIGHT
-================================ */
+/* =========================================
+   NIGHT PAGE
+========================================= */
 
 .night{
 
@@ -226,28 +264,28 @@ body{
     background:
 
         radial-gradient(
-            circle at 50% 12%,
-            rgba(130,150,255,.20),
-            transparent 35%
+            circle at 50% 10%,
+            rgba(120,140,255,.15),
+            transparent 32%
         ),
 
         linear-gradient(
             180deg,
-            #090f31,
-            #151a49,
-            #2c255d
+            #080e2c,
+            #141a45,
+            #292457
         );
 
 }
 
 
-/* ================================
+/* =========================================
    TEXT
-================================ */
+========================================= */
 
 .eyebrow{
 
-    font-size:12px;
+    font-size:11px;
 
     letter-spacing:4px;
 
@@ -255,7 +293,7 @@ body{
 
     opacity:.7;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 
 }
 
@@ -285,7 +323,7 @@ h1{
 h2{
 
     font-size:
-        clamp(38px,7vw,64px);
+        clamp(34px,7vw,60px);
 
     line-height:1.05;
 
@@ -296,57 +334,58 @@ h2{
 
 .text{
 
-    max-width:560px;
+    max-width:550px;
 
     font-family:Georgia,serif;
 
     font-size:
-        clamp(18px,3vw,25px);
+        clamp(18px,3vw,24px);
 
-    line-height:1.65;
+    line-height:1.6;
 
 }
 
 
 .small-text{
 
-    max-width:560px;
+    max-width:550px;
 
-    font-size:16px;
+    font-size:15px;
 
-    line-height:1.7;
+    line-height:1.6;
 
 }
 
 
-/* ================================
+/* =========================================
    MOON
-================================ */
+========================================= */
 
 .moon{
 
-    width:130px;
-    height:130px;
+    width:120px;
+
+    height:120px;
 
     border-radius:50%;
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
     background:
 
         radial-gradient(
-            circle at 32% 28%,
-            #ffffff,
-            #ffe9b9 48%,
-            #d8a66c
+            circle at 30% 28%,
+            #fff,
+            #ffe9b7 48%,
+            #d5a46a
         );
 
     box-shadow:
 
-        0 0 25px #fff,
+        0 0 22px #fff,
 
-        0 0 70px
-        rgba(255,235,190,.7);
+        0 0 55px
+        rgba(255,235,190,.65);
 
     animation:
         moonGlow 3s ease-in-out infinite;
@@ -360,168 +399,132 @@ h2{
 
         box-shadow:
 
-            0 0 40px #fff,
+            0 0 32px #fff,
 
-            0 0 105px
-            rgba(255,235,190,.9);
+            0 0 80px
+            rgba(255,235,190,.8);
 
     }
 
 }
 
 
-/* MOON CRATERS */
-
-.moon::before{
-
-    content:"";
-
-    display:block;
-
-    width:20px;
-    height:20px;
-
-    border-radius:50%;
-
-    background:
-        rgba(120,90,70,.16);
-
-    margin:
-        28px 0 0 68px;
-
-    box-shadow:
-
-        -42px 38px
-        0 5px
-        rgba(120,90,70,.11),
-
-        18px 48px
-        0 3px
-        rgba(120,90,70,.12);
-
-}
-
-
-/* ================================
+/* =========================================
    CLOUDS
-================================ */
+========================================= */
 
 .cloud{
 
     position:absolute;
 
-    width:190px;
-    height:65px;
+    width:180px;
+
+    height:60px;
 
     border-radius:100px;
 
     background:
-        rgba(255,255,255,.20);
+        rgba(255,255,255,.18);
 
-    filter:blur(8px);
+    filter:blur(7px);
 
 }
 
 
-.cloud::before,
-.cloud::after{
+.cloud:before,
+.cloud:after{
 
     content:"";
 
     position:absolute;
 
-    border-radius:50%;
-
     background:inherit;
 
-}
-
-
-.cloud::before{
-
-    width:95px;
-    height:95px;
-
-    left:30px;
-    top:-38px;
+    border-radius:50%;
 
 }
 
 
-.cloud::after{
+.cloud:before{
 
-    width:105px;
-    height:105px;
+    width:85px;
 
-    right:18px;
-    top:-45px;
+    height:85px;
+
+    left:25px;
+
+    top:-35px;
 
 }
 
 
-.cloud1{
+.cloud:after{
+
+    width:100px;
+
+    height:100px;
+
+    right:15px;
+
+    top:-42px;
+
+}
+
+
+.cloud-left{
 
     left:-65px;
-    bottom:95px;
+
+    bottom:80px;
 
 }
 
 
-.cloud2{
+.cloud-right{
 
     right:-70px;
-    top:110px;
 
-    transform:scale(.8);
-
-}
-
-
-.cloud3{
-
-    right:-50px;
-    bottom:30px;
-
-    transform:scale(.6);
+    top:100px;
 
 }
 
 
-/* ================================
+/* =========================================
    BUTTON
-================================ */
+========================================= */
 
 .next-btn{
 
-    margin-top:32px;
+    margin-top:30px;
 
     padding:
-        14px 28px;
+        13px 26px;
 
     border:none;
 
     border-radius:50px;
-
-    cursor:pointer;
-
-    font-size:15px;
-
-    font-weight:700;
 
     color:white;
 
     background:
         linear-gradient(
             135deg,
-            #b84773,
-            #d66d96
+            #b74773,
+            #d56b95
         );
 
-    box-shadow:
-        0 10px 28px
-        rgba(100,30,65,.25);
+    font-weight:700;
 
-    transition:.3s;
+    font-size:14px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 22px
+        rgba(100,30,60,.25);
+
+    transition:
+        transform .2s;
 
 }
 
@@ -529,8 +532,8 @@ h2{
 .next-btn:hover{
 
     transform:
-        translateY(-3px)
-        scale(1.04);
+        translateY(-2px)
+        scale(1.03);
 
 }
 
@@ -539,11 +542,12 @@ h2{
 
     position:absolute;
 
-    bottom:22px;
-    left:22px;
+    left:20px;
+
+    bottom:18px;
 
     padding:
-        8px 16px;
+        8px 15px;
 
     border-radius:30px;
 
@@ -560,27 +564,28 @@ h2{
 }
 
 
-/* ================================
+/* =========================================
    PAGE NUMBER
-================================ */
+========================================= */
 
 .page-number{
 
     position:absolute;
 
-    bottom:23px;
-    right:25px;
+    right:20px;
 
-    font-size:12px;
+    bottom:20px;
 
-    opacity:.55;
+    font-size:11px;
+
+    opacity:.5;
 
 }
 
 
-/* ================================
+/* =========================================
    GALLERY
-================================ */
+========================================= */
 
 .gallery{
 
@@ -591,26 +596,22 @@ h2{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:9px;
+    gap:8px;
 
-    margin-top:8px;
+    margin-top:10px;
 
 }
 
 
 .photo{
 
-    height:145px;
+    height:135px;
 
     overflow:hidden;
 
-    border-radius:14px;
+    border-radius:12px;
 
     background:white;
-
-    box-shadow:
-        0 8px 20px
-        rgba(50,15,30,.20);
 
 }
 
@@ -618,108 +619,61 @@ h2{
 .photo img{
 
     width:100%;
-    height:100%;
 
-    object-fit:cover;
+    height:100%;
 
     display:block;
 
-    transition:
-        transform .5s;
+    object-fit:cover;
 
 }
 
 
-.photo:hover img{
-
-    transform:scale(1.08);
-
-}
-
-
-/* ================================
-   SHOOTING STARS
-================================ */
-
-.shooting-star{
-
-    position:absolute;
-
-    width:110px;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            white
-        );
-
-    transform:
-        rotate(-35deg);
-
-    opacity:.8;
-
-}
-
-
-.shoot1{
-
-    top:23%;
-    left:10%;
-
-}
-
-
-.shoot2{
-
-    top:43%;
-    right:8%;
-
-    transform:
-        rotate(-35deg)
-        scale(.7);
-
-}
-
-
-.shoot3{
-
-    top:68%;
-    left:25%;
-
-    transform:
-        rotate(-35deg)
-        scale(.5);
-
-}
-
-
-/* ================================
+/* =========================================
    ROMANTIC LINES
-================================ */
+========================================= */
 
 .lines{
 
-    max-width:560px;
+    max-width:540px;
 
     font-family:Georgia,serif;
 
     font-style:italic;
 
     font-size:
-        clamp(20px,4vw,31px);
+        clamp(20px,4vw,30px);
 
-    line-height:1.85;
+    line-height:1.8;
 
 }
 
 
-/* ================================
+/* =========================================
+   STARS PAGE
+========================================= */
+
+.star-symbols{
+
+    font-size:42px;
+
+    margin:
+        10px 0 25px;
+
+    letter-spacing:10px;
+
+}
+
+
+/* =========================================
    PROPOSAL
-================================ */
+========================================= */
 
 .proposal-buttons{
+
+    margin-top:25px;
+
+    min-height:90px;
 
     display:flex;
 
@@ -727,13 +681,7 @@ h2{
 
     justify-content:center;
 
-    gap:20px;
-
-    width:100%;
-
-    min-height:100px;
-
-    margin-top:25px;
+    gap:18px;
 
 }
 
@@ -746,9 +694,9 @@ h2{
     border-radius:50px;
 
     padding:
-        15px 30px;
+        14px 28px;
 
-    font-size:16px;
+    font-size:15px;
 
     font-weight:700;
 
@@ -759,25 +707,21 @@ h2{
 
 .yes-btn{
 
-    color:white;
-
     background:#bd5278;
 
-    box-shadow:
-        0 10px 25px
-        rgba(100,20,60,.25);
+    color:white;
 
 }
 
 
 .no-btn{
 
-    color:#bd5278;
-
     background:white;
 
+    color:#bd5278;
+
     border:
-        1px solid #e5b0c3;
+        1px solid #e4adc1;
 
     transition:
         left .2s,
@@ -791,51 +735,52 @@ h2{
 
     display:none;
 
-    margin-top:20px;
+    margin-top:18px;
 
     font-family:Georgia,serif;
 
     font-size:
-        clamp(25px,5vw,42px);
+        clamp(25px,5vw,40px);
 
     line-height:1.4;
 
     animation:
-        pop .5s ease;
+        appear .5s ease;
 
 }
 
 
-@keyframes pop{
+@keyframes appear{
 
     from{
 
-        transform:scale(.5);
-
         opacity:0;
+
+        transform:scale(.7);
 
     }
 
     to{
 
-        transform:scale(1);
-
         opacity:1;
+
+        transform:scale(1);
 
     }
 
 }
 
 
-/* ================================
+/* =========================================
    MOBILE
-================================ */
+========================================= */
 
 @media(max-width:600px){
 
     .page{
 
         width:94vw;
+
         height:94vh;
 
     }
@@ -844,7 +789,7 @@ h2{
     .inner{
 
         padding:
-            32px 20px;
+            30px 18px;
 
     }
 
@@ -859,15 +804,16 @@ h2{
 
     .photo{
 
-        height:125px;
+        height:115px;
 
     }
 
 
     .moon{
 
-        width:105px;
-        height:105px;
+        width:100px;
+
+        height:100px;
 
     }
 
@@ -875,13 +821,6 @@ h2{
     .small-text{
 
         font-size:14px;
-
-    }
-
-
-    .next-btn{
-
-        margin-top:25px;
 
     }
 
@@ -895,31 +834,35 @@ h2{
 <body>
 
 
-<!-- ==================================================
-     BACKGROUND STARS
-================================================== -->
+<!-- ========================================
+     STARS
+======================================== -->
 
 <div id="stars"></div>
 
 
-<!-- ==================================================
-     BOOK
-================================================== -->
-
 <div class="book">
 
 
-<!-- ==================================================
+<!-- ========================================
      PAGE 1
-================================================== -->
+======================================== -->
 
-<div class="page pink" id="page1">
+<section
+class="page pink active"
+id="page1">
 
 <div class="inner">
 
-    <div class="cloud cloud1"></div>
 
-    <div class="cloud cloud2"></div>
+    <div
+    class="cloud cloud-left">
+    </div>
+
+
+    <div
+    class="cloud cloud-right">
+    </div>
 
 
     <div class="eyebrow">
@@ -957,8 +900,8 @@ h2{
 
 
     <button
-        class="next-btn"
-        onclick="nextPage()">
+    class="next-btn"
+    onclick="nextPage()">
 
         Next Glimpse → 🌙
 
@@ -967,23 +910,26 @@ h2{
 
     <div class="page-number">
 
-        1 / 8
+        1 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 
-<!-- ==================================================
-     PAGE 2
-================================================== -->
+<!-- ========================================
+     PAGE 2 — MEMORIES
+======================================== -->
 
-<div class="page pink" id="page2">
+<section
+class="page pink"
+id="page2">
 
 <div class="inner">
+
 
     <div class="eyebrow">
 
@@ -1001,14 +947,14 @@ h2{
 
     <p class="small-text">
 
-        Every picture has a little
-        piece of a memory attached to it.
+        Every picture has a little piece
+        of a memory attached to it.
 
         <br>
 
         And somehow,
-        every memory feels more
-        beautiful because it's you.
+        every memory feels more beautiful
+        because it's you.
 
     </p>
 
@@ -1019,8 +965,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo1.jpg"
-                alt="Memory 1">
+            src="assets/photo1.jpg"
+            alt="Memory 1">
 
         </div>
 
@@ -1028,8 +974,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo2.jpg"
-                alt="Memory 2">
+            src="assets/photo2.jpg"
+            alt="Memory 2">
 
         </div>
 
@@ -1037,8 +983,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo3.jpg"
-                alt="Memory 3">
+            src="assets/photo3.jpg"
+            alt="Memory 3">
 
         </div>
 
@@ -1046,8 +992,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo4.jpg"
-                alt="Memory 4">
+            src="assets/photo4.jpg"
+            alt="Memory 4">
 
         </div>
 
@@ -1055,8 +1001,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo5.jpg"
-                alt="Memory 5">
+            src="assets/photo5.jpg"
+            alt="Memory 5">
 
         </div>
 
@@ -1064,8 +1010,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo6.jpg"
-                alt="Memory 6">
+            src="assets/photo6.jpg"
+            alt="Memory 6">
 
         </div>
 
@@ -1073,8 +1019,8 @@ h2{
         <div class="photo">
 
             <img
-                src="assets/photo7.jpg"
-                alt="Memory 7">
+            src="assets/photo7.jpg"
+            alt="Memory 7">
 
         </div>
 
@@ -1083,8 +1029,8 @@ h2{
 
 
     <button
-        class="next-btn"
-        onclick="nextPage()">
+    class="next-btn"
+    onclick="nextPage()">
 
         Next Glimpse → 💗
 
@@ -1092,8 +1038,8 @@ h2{
 
 
     <button
-        class="back-btn"
-        onclick="previousPage()">
+    class="back-btn"
+    onclick="previousPage()">
 
         ← Back
 
@@ -1102,23 +1048,26 @@ h2{
 
     <div class="page-number">
 
-        2 / 8
+        2 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 
-<!-- ==================================================
-     PAGE 3
-================================================== -->
+<!-- ========================================
+     PAGE 3 — LETTER
+======================================== -->
 
-<div class="page pink" id="page3">
+<section
+class="page pink"
+id="page3">
 
 <div class="inner">
+
 
     <div class="eyebrow">
 
@@ -1128,10 +1077,10 @@ h2{
 
 
     <div
-        style="
-        font-size:62px;
-        margin-bottom:18px;
-        ">
+    style="
+    font-size:55px;
+    margin-bottom:15px;
+    ">
 
         💗
 
@@ -1165,12 +1114,12 @@ h2{
 
 
     <div
-        style="
-        margin-top:22px;
-        font-size:12px;
-        letter-spacing:2px;
-        opacity:.7;
-        ">
+    style="
+    margin-top:20px;
+    font-size:11px;
+    letter-spacing:2px;
+    opacity:.7;
+    ">
 
         — AKASHH, WITH LOVE 🌙
 
@@ -1178,8 +1127,8 @@ h2{
 
 
     <button
-        class="next-btn"
-        onclick="nextPage()">
+    class="next-btn"
+    onclick="nextPage()">
 
         Next Glimpse → 💌
 
@@ -1187,8 +1136,8 @@ h2{
 
 
     <button
-        class="back-btn"
-        onclick="previousPage()">
+    class="back-btn"
+    onclick="previousPage()">
 
         ← Back
 
@@ -1197,29 +1146,35 @@ h2{
 
     <div class="page-number">
 
-        3 / 8
+        3 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 
-<!-- ==================================================
-     PAGE 4 — MOON
-================================================== -->
+<!-- ========================================
+     PAGE 4 — MOON + STARS
+======================================== -->
 
-<div class="page night" id="page4">
+<section
+class="page night"
+id="page4">
 
 <div class="inner">
 
-    <div class="cloud cloud1"></div>
 
-    <div class="cloud cloud2"></div>
+    <div
+    class="cloud cloud-left">
+    </div>
 
-    <div class="cloud cloud3"></div>
+
+    <div
+    class="cloud cloud-right">
+    </div>
 
 
     <div class="eyebrow">
@@ -1234,94 +1189,12 @@ h2{
 
     <h2>
 
-        The Moon in the Sky 🌙
+        The Moon & The Stars 🌙✨
 
     </h2>
 
 
-    <p class="text">
-
-        You are like the moon...
-
-        <br><br>
-
-        So beautiful.
-        So calm.
-
-        <br><br>
-
-        And somehow,
-        you have a magic
-        that lights up my
-        darkest nights.
-
-    </p>
-
-
-    <button
-        class="next-btn"
-        onclick="nextPage()">
-
-        Next Glimpse → ✨
-
-    </button>
-
-
-    <button
-        class="back-btn"
-        onclick="previousPage()">
-
-        ← Back
-
-    </button>
-
-
-    <div class="page-number">
-
-        4 / 8
-
-    </div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==================================================
-     PAGE 5 — STARS
-================================================== -->
-
-<div class="page night" id="page5">
-
-<div class="inner">
-
-    <div class="shooting-star shoot1"></div>
-
-    <div class="shooting-star shoot2"></div>
-
-    <div class="shooting-star shoot3"></div>
-
-
-    <div class="eyebrow">
-
-        Look a little closer...
-
-    </div>
-
-
-    <h2>
-
-        The Stars Are Watching ✨
-
-    </h2>
-
-
-    <div
-        style="
-        font-size:48px;
-        margin:15px 0;
-        ">
+    <div class="star-symbols">
 
         ✨ ⭐ ✨
 
@@ -1330,27 +1203,31 @@ h2{
 
     <p class="text">
 
-        Every star up there
-        reminds me of you...
+        You are like the moon...
 
         <br><br>
 
-        Because you are the one
-        who somehow makes my
-        world feel complete.
+        Quietly shining,
+        even on the darkest nights.
+
+        <br><br>
+
+        And every star above
+        somehow reminds me
+        of you.
 
         <br><br>
 
         Maybe that's why
-        the night feels different
-        when I think of you. ❤️
+        the night feels beautiful
+        whenever I think of you. ❤️
 
     </p>
 
 
     <button
-        class="next-btn"
-        onclick="nextPage()">
+    class="next-btn"
+    onclick="nextPage()">
 
         Next Glimpse → ⭐
 
@@ -1358,8 +1235,8 @@ h2{
 
 
     <button
-        class="back-btn"
-        onclick="previousPage()">
+    class="back-btn"
+    onclick="previousPage()">
 
         ← Back
 
@@ -1368,112 +1245,32 @@ h2{
 
     <div class="page-number">
 
-        5 / 8
+        4 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 
-<!-- ==================================================
-     PAGE 6 — MOONLIGHT
-================================================== -->
+<!-- ========================================
+     PAGE 5 — LINES
+======================================== -->
 
-<div class="page night" id="page6">
+<section
+class="page pink"
+id="page5">
 
 <div class="inner">
 
-    <div class="cloud cloud1"></div>
-
-    <div class="cloud cloud2"></div>
-
-
-    <div class="eyebrow">
-
-        One more thought...
-
-    </div>
-
-
-    <div class="moon"></div>
-
-
-    <h2>
-
-        Moon Shining Bright
-
-    </h2>
-
-
-    <p class="text">
-
-        Your smile is like
-        the moonlight...
-
-        <br><br>
-
-        It makes everything
-        around me brighter,
-        softer and more beautiful.
-
-        <br><br>
-
-        And sometimes I wonder...
-
-        <br>
-
-        how one person
-        can mean so much.
-
-    </p>
-
-
-    <button
-        class="next-btn"
-        onclick="nextPage()">
-
-        Next Glimpse → 🌙
-
-    </button>
-
-
-    <button
-        class="back-btn"
-        onclick="previousPage()">
-
-        ← Back
-
-    </button>
-
-
-    <div class="page-number">
-
-        6 / 8
-
-    </div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==================================================
-     PAGE 7 — LINES
-================================================== -->
-
-<div class="page pink" id="page7">
-
-<div class="inner">
 
     <div
-        style="
-        font-size:48px;
-        margin-bottom:18px;
-        ">
+    style="
+    font-size:48px;
+    margin-bottom:15px;
+    ">
 
         ♡
 
@@ -1520,8 +1317,8 @@ h2{
 
 
     <button
-        class="next-btn"
-        onclick="nextPage()">
+    class="next-btn"
+    onclick="nextPage()">
 
         One Last Glimpse → 💌
 
@@ -1529,8 +1326,8 @@ h2{
 
 
     <button
-        class="back-btn"
-        onclick="previousPage()">
+    class="back-btn"
+    onclick="previousPage()">
 
         ← Back
 
@@ -1539,23 +1336,26 @@ h2{
 
     <div class="page-number">
 
-        7 / 8
+        5 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 
-<!-- ==================================================
-     PAGE 8 — PROPOSAL
-================================================== -->
+<!-- ========================================
+     PAGE 6 — PROPOSAL
+======================================== -->
 
-<div class="page pink" id="page8">
+<section
+class="page pink"
+id="page6">
 
 <div class="inner">
+
 
     <div class="eyebrow">
 
@@ -1565,10 +1365,10 @@ h2{
 
 
     <div
-        style="
-        font-size:70px;
-        margin-bottom:15px;
-        ">
+    style="
+    font-size:65px;
+    margin-bottom:15px;
+    ">
 
         🌙
 
@@ -1602,8 +1402,8 @@ h2{
 
 
         <button
-            class="yes-btn"
-            onclick="yesClicked()">
+        class="yes-btn"
+        onclick="yesClicked()">
 
             YES ❤️
 
@@ -1611,10 +1411,10 @@ h2{
 
 
         <button
-            class="no-btn"
-            id="noBtn"
-            onmouseenter="runAway()"
-            ontouchstart="runAway()">
+        class="no-btn"
+        id="noBtn"
+        onmouseenter="runAway()"
+        ontouchstart="runAway()">
 
             NO 😭
 
@@ -1635,7 +1435,7 @@ h2{
         <br>
 
         <span
-            style="font-size:20px;">
+        style="font-size:19px;">
 
             Now come here. 🫂❤️
 
@@ -1645,8 +1445,8 @@ h2{
 
 
     <button
-        class="back-btn"
-        onclick="previousPage()">
+    class="back-btn"
+    onclick="previousPage()">
 
         ← Back
 
@@ -1655,13 +1455,13 @@ h2{
 
     <div class="page-number">
 
-        8 / 8
+        6 / 6
 
     </div>
 
 </div>
 
-</div>
+</section>
 
 
 </div>
@@ -1669,26 +1469,291 @@ h2{
 
 <script>
 
-/* ==================================================
-   PAGE TURNING
-================================================== */
+
+/* =========================================
+   PAGE SYSTEM
+========================================= */
 
 let currentPage = 1;
 
-const totalPages = 8;
+let isTurning = false;
 
-const pages =
-    document.querySelectorAll(".page");
+const totalPages = 6;
 
 
-function setupPages(){
+function nextPage(){
 
-    pages.forEach(
-        (page,index)=>{
+    if(
+        isTurning ||
+        currentPage >= totalPages
+    ){
 
-            const pageNumber =
-                index + 1;
+        return;
 
-            /*
-              Pages behind the current
-              page get lower z-index.
+    }
+
+
+    isTurning = true;
+
+
+    const current =
+        document.getElementById(
+            "page" + currentPage
+        );
+
+
+    const next =
+        document.getElementById(
+            "page" + (currentPage + 1)
+        );
+
+
+    /*
+       Show next page underneath.
+    */
+
+    next.style.display = "block";
+
+    next.style.zIndex = "5";
+
+
+    current.style.zIndex = "20";
+
+
+    /*
+       Start flip.
+    */
+
+    current.classList.add(
+        "turning"
+    );
+
+
+    currentPage++;
+
+
+    /*
+       After animation:
+       hide old page completely.
+    */
+
+    setTimeout(
+
+        function(){
+
+            current.classList.remove(
+                "active"
+            );
+
+            current.classList.remove(
+                "turning"
+            );
+
+            current.style.display =
+                "none";
+
+            next.classList.add(
+                "active"
+            );
+
+            next.style.display =
+                "block";
+
+            next.style.zIndex =
+                "10";
+
+            isTurning = false;
+
+        },
+
+        850
+
+    );
+
+}
+
+
+
+function previousPage(){
+
+    if(
+        isTurning ||
+        currentPage <= 1
+    ){
+
+        return;
+
+    }
+
+
+    isTurning = true;
+
+
+    const current =
+        document.getElementById(
+            "page" + currentPage
+        );
+
+
+    const previous =
+        document.getElementById(
+            "page" + (currentPage - 1)
+        );
+
+
+    /*
+       Make previous page visible.
+    */
+
+    previous.style.display =
+        "block";
+
+    previous.style.zIndex =
+        "5";
+
+
+    /*
+       Remove current page.
+    */
+
+    current.classList.remove(
+        "active"
+    );
+
+    current.style.display =
+        "none";
+
+
+    previous.classList.add(
+        "active"
+    );
+
+    previous.style.zIndex =
+        "10";
+
+
+    currentPage--;
+
+
+    isTurning = false;
+
+}
+
+
+/* =========================================
+   LIGHTWEIGHT STARS
+========================================= */
+
+const starContainer =
+    document.getElementById(
+        "stars"
+    );
+
+
+for(
+    let i = 0;
+    i < 35;
+    i++
+){
+
+    const star =
+        document.createElement(
+            "span"
+        );
+
+
+    star.className =
+        "star";
+
+
+    star.style.left =
+        Math.random() * 100 +
+        "vw";
+
+
+    star.style.top =
+        Math.random() * 100 +
+        "vh";
+
+
+    star.style.animationDelay =
+        Math.random() * 3 +
+        "s";
+
+
+    starContainer.appendChild(
+        star
+    );
+
+}
+
+
+/* =========================================
+   NO BUTTON
+========================================= */
+
+const noBtn =
+    document.getElementById(
+        "noBtn"
+    );
+
+
+function runAway(){
+
+    noBtn.style.position =
+        "fixed";
+
+
+    const width =
+        noBtn.offsetWidth;
+
+
+    const height =
+        noBtn.offsetHeight;
+
+
+    const padding = 20;
+
+
+    const maxX =
+        window.innerWidth
+        -
+        width
+        -
+        padding;
+
+
+    const maxY =
+        window.innerHeight
+        -
+        height
+        -
+        padding;
+
+
+    const x =
+        Math.max(
+            padding,
+            Math.random() * maxX
+        );
+
+
+    const y =
+        Math.max(
+            padding,
+            Math.random() * maxY
+        );
+
+
+    noBtn.style.left =
+        x + "px";
+
+
+    noBtn.style.top =
+        y + "px";
+
+
+    noBtn.style.transform =
+        "rotate(" +
+        (
+            Math.ra
