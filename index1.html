@@ -1,750 +1,1322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffd6e5">
 
-<title>My Moon 🌙 — For You</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>My Moon 🌙</title>
 
 <style>
 
-:root{
-    --pink:#fff0f5;
-    --rose:#b84d73;
-    --deep:#632d45;
-    --muted:#85596b;
-    --glass:rgba(255,255,255,.65);
+/* =========================
+   BASIC
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-    box-sizing:border-box;
+html {
+    scroll-behavior: smooth;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+body {
 
-body{
-    margin:0;
-    background:var(--pink);
-    color:var(--deep);
-    font-family:'DM Sans',sans-serif;
-    overflow-x:hidden;
-}
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
+    color: #633247;
 
     background:
-    radial-gradient(
-        circle at 15% 15%,
-        #fff 0 12%,
-        transparent 34%
-    ),
-
-    radial-gradient(
-        circle at 85% 75%,
-        #ffd2e2 0 10%,
-        transparent 34%
-    ),
-
     linear-gradient(
         135deg,
         #fff5f8,
-        #ffe1ec
-    );
-}
-
-body:after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    opacity:.22;
-
-    background-image:
-    radial-gradient(
-        #fff 1px,
-        transparent 1px
+        #ffe4ed,
+        #fff0f5
     );
 
-    background-size:22px 22px;
+    overflow-x: hidden;
 }
 
-section{
-    min-height:100svh;
-    display:grid;
-    place-items:center;
-    padding:28px 18px;
-    position:relative;
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+#hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1000;
 }
 
-.card{
-    width:min(980px,100%);
-    padding:clamp(28px,5vw,60px);
+.heart {
 
-    border:1px solid rgba(255,255,255,.8);
-    border-radius:34px;
+    position: absolute;
 
-    background:var(--glass);
+    top: -30px;
 
-    box-shadow:
-    0 30px 90px rgba(130,52,80,.16);
+    font-size: 20px;
 
-    backdrop-filter:blur(18px);
-
-    text-align:center;
-}
-
-.eyebrow{
-    text-transform:uppercase;
-    letter-spacing:4px;
-    font-size:11px;
-    color:#a2677e;
-}
-
-.moon{
-    font-size:clamp(68px,13vw,120px);
-    line-height:1;
-    margin:18px 0 4px;
-
-    filter:
-    drop-shadow(
-        0 8px 15px
-        rgba(184,77,115,.2)
-    );
-}
-
-h1,
-h2{
-    font-family:'Cormorant Garamond',serif;
-    color:var(--rose);
-    margin:0;
-    font-weight:600;
-}
-
-h1{
-    font-size:clamp(58px,12vw,112px);
-    line-height:.9;
-}
-
-h2{
-    font-size:clamp(42px,8vw,72px);
-}
-
-.lead{
-    max-width:620px;
-    margin:24px auto;
-
-    line-height:1.8;
-
-    color:var(--muted);
-
-    font-size:15px;
-}
-
-.letter{
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:clamp(
-        24px,
-        4vw,
-        38px
-    );
-
-    line-height:1.35;
-
-    max-width:760px;
-
-    margin:28px auto;
-
-    color:#71334e;
-}
-
-.btns{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:28px;
-}
-
-button{
-    border:0;
-    border-radius:999px;
-
-    padding:14px 23px;
-
-    background:var(--rose);
-    color:#fff;
-
-    font:
-    600 14px
-    'DM Sans';
-
-    cursor:pointer;
-
-    box-shadow:
-    0 10px 25px
-    rgba(184,77,115,.22);
-
-    transition:.2s;
-}
-
-button:hover{
-    transform:translateY(-2px);
-}
-
-button.secondary{
-    background:rgba(255,255,255,.8);
-
-    color:var(--rose);
-
-    border:1px solid #efbfd0;
-}
-
-.gallery{
-    display:grid;
-
-    grid-template-columns:
-    repeat(6,1fr);
-
-    gap:12px;
-
-    margin:30px auto 0;
-
-    max-width:860px;
-}
-
-.photo{
-    overflow:hidden;
-
-    border-radius:20px;
-
-    box-shadow:
-    0 10px 28px
-    rgba(100,45,69,.13);
-
-    background:#fff;
-}
-
-.photo img{
-    display:block;
-
-    width:100%;
-    height:250px;
-
-    object-fit:cover;
-
-    transition:
-    transform .5s;
-}
-
-.photo:hover img{
-    transform:scale(1.045);
-}
-
-/* Photo layout */
-
-.photo:nth-child(1),
-.photo:nth-child(4){
-    grid-column:span 3;
-}
-
-.photo:nth-child(2),
-.photo:nth-child(3),
-.photo:nth-child(5),
-.photo:nth-child(6),
-.photo:nth-child(7){
-    grid-column:span 2;
-}
-
-.signature{
-    margin-top:25px;
-
-    color:#a2677e;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-}
-
-.heart{
-    display:inline-block;
-
-    animation:
-    beat 1.4s infinite;
-}
-
-@keyframes beat{
-
-    50%{
-        transform:scale(1.15);
-    }
-
-}
-
-.floating{
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-    z-index:5;
-}
-
-.float{
-    position:absolute;
-
-    top:-40px;
+    opacity: .7;
 
     animation:
     fall linear forwards;
-
-    opacity:.65;
 }
 
-@keyframes fall{
+@keyframes fall {
 
-    to{
+    0% {
+
         transform:
-        translate3d(
-            var(--dx),
-            110vh,
-            0
-        )
-        rotate(280deg);
+        translateY(0)
+        rotate(0deg);
 
-        opacity:0;
+        opacity: 0;
+
+    }
+
+    10% {
+
+        opacity: .8;
+
+    }
+
+    100% {
+
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+
+        opacity: 0;
+
     }
 
 }
 
-@media(max-width:700px){
 
-    section{
-        padding:16px;
-    }
+/* =========================
+   SECTIONS
+========================= */
 
-    .card{
-        border-radius:26px;
-    }
+section {
 
-    .gallery{
-        grid-template-columns:1fr 1fr;
-    }
+    min-height: 100vh;
 
-    .photo:nth-child(n){
-        grid-column:span 1;
-    }
+    display: flex;
 
-    .photo img{
-        height:210px;
-    }
+    justify-content: center;
 
-    .photo:first-child{
-        grid-column:span 2;
-    }
+    align-items: center;
 
-    .lead{
-        font-size:14px;
+    padding: 30px 18px;
+
+}
+
+
+/* =========================
+   GLASS CARD
+========================= */
+
+.card {
+
+    width: 100%;
+
+    max-width: 950px;
+
+    padding:
+    45px 30px;
+
+    text-align: center;
+
+    border-radius: 35px;
+
+    background:
+    rgba(255,255,255,.65);
+
+    border:
+    1px solid
+    rgba(255,255,255,.9);
+
+    box-shadow:
+    0 25px 80px
+    rgba(150,60,100,.15);
+
+    backdrop-filter:
+    blur(15px);
+
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.small-title {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #a66a82;
+
+    margin-bottom: 18px;
+
+}
+
+
+h1 {
+
+    font-family:
+    Georgia,
+    serif;
+
+    font-size:
+    clamp(60px, 13vw, 120px);
+
+    line-height: .9;
+
+    color: #bd5278;
+
+    margin-bottom: 25px;
+
+}
+
+
+h2 {
+
+    font-family:
+    Georgia,
+    serif;
+
+    font-size:
+    clamp(42px, 8vw, 75px);
+
+    color: #bd5278;
+
+    margin-bottom: 20px;
+
+}
+
+
+.subtitle {
+
+    max-width: 650px;
+
+    margin:
+    0 auto 30px;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+    color: #805267;
+
+}
+
+
+.moon {
+
+    font-size: 90px;
+
+    margin-bottom: 10px;
+
+    animation:
+    moonFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes moonFloat {
+
+    50% {
+
+        transform:
+        translateY(-10px);
+
     }
 
 }
 
-@media(max-width:430px){
 
-    .gallery{
-        gap:8px;
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+
+    border: none;
+
+    padding:
+    14px 25px;
+
+    border-radius: 50px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.main-btn {
+
+    color: white;
+
+    background:
+    #bd5278;
+
+    box-shadow:
+    0 10px 25px
+    rgba(189,82,120,.25);
+
+}
+
+
+.main-btn:hover {
+
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+
+.back-btn {
+
+    background: white;
+
+    color: #bd5278;
+
+    border:
+    1px solid #e9b5c7;
+
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery {
+
+    display:
+    grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+}
+
+
+.photo {
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+    0 12px 30px
+    rgba(100,40,65,.12);
+
+}
+
+
+.photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+
+    transition:
+    transform .5s ease;
+
+}
+
+
+.photo:hover img {
+
+    transform:
+    scale(1.06);
+
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+
+    max-width: 720px;
+
+    margin:
+    20px auto;
+
+    font-family:
+    Georgia,
+    serif;
+
+    font-size:
+    clamp(23px,4vw,34px);
+
+    line-height: 1.55;
+
+    color: #71344f;
+
+}
+
+
+.signature {
+
+    margin-top: 25px;
+
+    color: #a05d78;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================
+   PROPOSAL
+========================= */
+
+.proposal-buttons {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 130px;
+
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.yes-btn {
+
+    position: relative;
+
+    z-index: 5;
+
+    background: #bd5278;
+
+    color: white;
+
+    padding:
+    15px 30px;
+
+}
+
+
+.no-btn {
+
+    position: relative;
+
+    z-index: 4;
+
+    background: white;
+
+    color: #bd5278;
+
+    border:
+    1px solid #e5a9bd;
+
+    padding:
+    15px 30px;
+
+}
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+#finalMessage {
+
+    display: none;
+
+    margin-top: 30px;
+
+    font-family:
+    Georgia,
+    serif;
+
+    font-size:
+    clamp(25px,5vw,42px);
+
+    line-height: 1.4;
+
+    color: #bd5278;
+
+    animation:
+    pop .5s ease;
+
+}
+
+@keyframes pop {
+
+    from {
+
+        transform:
+        scale(.5);
+
+        opacity: 0;
+
     }
 
-    .photo img{
-        height:180px;
+    to {
+
+        transform:
+        scale(1);
+
+        opacity: 1;
+
     }
 
-    .card{
-        padding:28px 16px;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-btn {
+
+    position: fixed;
+
+    right: 18px;
+
+    bottom: 18px;
+
+    z-index: 2000;
+
+    width: 52px;
+
+    height: 52px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #bd5278;
+
+    border:
+    1px solid #efc0d0;
+
+    box-shadow:
+    0 8px 25px
+    rgba(120,50,80,.18);
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px) {
+
+    .card {
+
+        padding:
+        35px 18px;
+
+        border-radius: 27px;
+
+    }
+
+    .gallery {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .photo img {
+
+        height: 320px;
+
+    }
+
+    .letter {
+
+        font-size: 24px;
+
+    }
+
+}
+
+
+/* =========================
+   SMALL SCREEN
+========================= */
+
+@media(max-width:400px) {
+
+    .photo img {
+
+        height: 260px;
+
+    }
+
+    .proposal-buttons {
+
+        min-height: 150px;
+
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<!-- Floating hearts -->
 
-<div
-    class="floating"
-    id="floating">
-</div>
+<!-- FLOATING HEARTS -->
+
+<div id="hearts"></div>
 
 
-<!-- PAGE 1 -->
+<!-- =========================
+     PAGE 1
+========================= -->
 
 <section id="home">
 
-    <div class="card">
+<div class="card">
 
-        <div class="eyebrow">
-            A little website made just for you
-        </div>
+    <div class="small-title">
 
-
-        <div class="moon">
-            🌙
-        </div>
-
-
-        <h1>
-            My Moon
-        </h1>
-
-
-        <p class="lead">
-
-            My name is
-            <b>Akashh</b>.
-
-            <br><br>
-
-            And if I had to put everything
-            I feel into one tiny corner
-            of the internet…
-
-            <br>
-
-            it would look like this. ❤️
-
-        </p>
-
-
-        <div class="btns">
-
-            <button
-                onclick="go('memories')">
-
-                Open my heart 💗
-
-            </button>
-
-        </div>
+        A little something for you
 
     </div>
+
+
+    <div class="moon">
+
+        🌙
+
+    </div>
+
+
+    <h1>
+
+        My Moon
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        My name is <b>Akashh</b>. ❤️
+
+        <br><br>
+
+        I made this little corner
+        of the internet just for you.
+
+        <br>
+
+        Because some feelings
+        deserve their own little world. 💗
+
+    </p>
+
+
+    <button
+    class="main-btn"
+    onclick="goTo('memories')">
+
+        Open my heart 💗
+
+    </button>
+
+</div>
 
 </section>
 
 
 
-<!-- PAGE 2 -->
+<!-- =========================
+     PAGE 2
+========================= -->
 
 <section id="memories">
 
-    <div class="card">
+<div class="card">
 
-        <div class="eyebrow">
-            A few little memories
-        </div>
+    <div class="small-title">
 
-
-        <h2>
-            Us. ❤️
-        </h2>
-
-
-        <p class="lead">
-
-            Some moments don't need
-            a long explanation.
-
-            <br>
-
-            They just deserve to
-            be remembered.
-
-        </p>
-
-
-        <!-- PHOTO GALLERY -->
-
-        <div class="gallery">
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo1.jpg"
-                    alt="Our memory 1">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo2.jpg"
-                    alt="Our memory 2">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo3.jpg"
-                    alt="Our memory 3">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo4.png"
-                    alt="Our memory 4">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo5.jpg"
-                    alt="Our memory 5">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo6.jpg"
-                    alt="Our memory 6">
-
-            </div>
-
-
-            <div class="photo">
-
-                <img
-                    src="assets/photo7.jpg"
-                    alt="Our memory 7">
-
-            </div>
-
-
-        </div>
-
-
-        <div class="btns">
-
-
-            <button
-                class="secondary"
-                onclick="go('home')">
-
-                ← Back
-
-            </button>
-
-
-            <button
-                onclick="go('letter')">
-
-                One last thing 💌
-
-            </button>
-
-
-        </div>
+        Little moments
 
     </div>
+
+
+    <h2>
+
+        Our Memories ❤️
+
+    </h2>
+
+
+    <p class="subtitle">
+
+        Every picture has a little
+        piece of a memory attached to it.
+
+        <br>
+
+        And somehow,
+        every memory feels a little
+        more special because it's you. 🌸
+
+    </p>
+
+
+    <div class="gallery">
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo1.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo2.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo3.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo4.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo5.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+            src="assets/photo6.jpg"
+            alt="Our memory">
+
+        </div>
+
+
+    </div>
+
+
+    <div style="margin-top:30px;">
+
+
+        <button
+        class="back-btn"
+        onclick="goTo('home')">
+
+            ← Back
+
+        </button>
+
+
+        <button
+        class="main-btn"
+        onclick="goTo('letter')">
+
+            One last thing 💌
+
+        </button>
+
+
+    </div>
+
+</div>
 
 </section>
 
 
 
-<!-- PAGE 3 -->
+<!-- =========================
+     PAGE 3
+========================= -->
 
 <section id="letter">
 
-    <div class="card">
+<div class="card">
+
+    <div class="small-title">
+
+        From my heart
+
+    </div>
 
 
-        <div class="eyebrow">
-            For my Moon
-        </div>
+    <div class="moon">
+
+        💗
+
+    </div>
 
 
-        <div class="heart">
-            💗
-        </div>
+    <div class="letter">
 
 
-        <div class="letter">
+        Bacha, I love you so muchh
+        ❤️🥰💝💗💋
 
 
-            Bacha, I love you so muchh
-            ❤️🥰💝💗💋
+        <br><br>
 
 
-            <br><br>
+        I just want you to know
+        that you will always be
+        loved by me.
 
 
-            You will always be loved
-            by me.
-
-            No matter what happens,
-            a part of my heart will
-            always wish happiness
-            for you.
-
-            💓❤️
+        <br><br>
 
 
-            <br><br>
+        No matter what happens,
+        no matter where life takes us,
+        I will always wish happiness
+        for my Moon.
 
 
-            You are incredibly special
-            to me, bacha.
-
-            💋❤️🥰
+        <br><br>
 
 
-        </div>
-
-
-        <div class="signature">
-
-            — AKASHH, WITH LOVE 🌙
-
-        </div>
-
-
-        <div class="btns">
-
-
-            <button
-                onclick="go('memories')">
-
-                See our memories again
-
-            </button>
-
-
-        </div>
+        You are incredibly special
+        to me. ❤️
 
 
     </div>
 
+
+    <div class="signature">
+
+        — AKASHH, WITH LOVE 🌙
+
+    </div>
+
+
+    <div style="margin-top:35px;">
+
+        <button
+        class="main-btn"
+        onclick="goTo('proposal')">
+
+            I have one question... 💌
+
+        </button>
+
+    </div>
+
+</div>
+
 </section>
+
+
+
+<!-- =========================
+     PAGE 4 — PROPOSAL
+========================= -->
+
+<section id="proposal">
+
+<div class="card">
+
+    <div class="small-title">
+
+        Okay... this is it 😭
+
+    </div>
+
+
+    <div class="moon">
+
+        🌙
+
+    </div>
+
+
+    <h2>
+
+        Will you be mine? ❤️
+
+    </h2>
+
+
+    <p class="subtitle">
+
+        Think carefully...
+
+        <br>
+
+        Actually, don't think too much. 😂
+
+        <br>
+
+        Just listen to your heart. 💗
+
+    </p>
+
+
+    <div class="proposal-buttons">
+
+
+        <button
+        class="yes-btn"
+        onclick="yesClicked()">
+
+            YES ❤️
+
+        </button>
+
+
+        <button
+        class="no-btn"
+        id="noBtn"
+        onmouseenter="runAway()"
+        ontouchstart="runAway()">
+
+            NO 😭
+
+        </button>
+
+
+    </div>
+
+
+    <div id="finalMessage">
+
+        I KNEW IT 😭❤️
+
+        <br>
+
+        My Moon said YES! 🌙💗
+
+        <br>
+
+        <span
+        style="
+        font-size:22px;
+        ">
+
+            Now come here. 🫂❤️
+
+        </span>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- MUSIC BUTTON -->
+
+<button
+class="music-btn"
+id="musicBtn"
+onclick="toggleMusic()">
+
+    🎵
+
+</button>
+
+
+<!-- AUDIO -->
+
+<audio
+id="music"
+loop>
+
+    <!--
+    PUT YOUR OWN / LICENSED MUSIC FILE HERE:
+
+    music/song.mp3
+
+    -->
+
+    <source
+    src="music/song.mp3"
+    type="audio/mpeg">
+
+</audio>
 
 
 
 <script>
 
 
-/* Smooth navigation */
+/* =========================
+   NAVIGATION
+========================= */
 
-function go(id){
+function goTo(id) {
 
     document
     .getElementById(id)
     .scrollIntoView({
-        behavior:'smooth'
+
+        behavior:
+        "smooth"
+
     });
 
 }
 
 
 
-/* Floating hearts */
+/* =========================
+   FLOATING HEARTS
+========================= */
 
-const box =
-document.getElementById('floating');
+function createHeart() {
 
-
-function sprinkle(){
-
-    const el =
-    document.createElement('span');
+    const heart =
+    document.createElement("div");
 
 
-    el.className =
-    'float';
+    heart.className =
+    "heart";
 
 
-    el.textContent =
-    [
-        '♡',
-        '♥',
-        '✦',
-        '🌸'
-    ][
+    const symbols = [
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "🌸",
+        "♡"
+    ];
+
+
+    heart.innerHTML =
+    symbols[
         Math.floor(
-            Math.random()*4
+            Math.random()
+            *
+            symbols.length
         )
     ];
 
 
-    el.style.left =
-    Math.random()*100+'vw';
+    heart.style.left =
+    Math.random()
+    * 100
+    + "vw";
 
 
-    el.style.fontSize =
+    heart.style.fontSize =
     (
-        12+
-        Math.random()*18
-    )+'px';
+        12
+        +
+        Math.random()
+        * 18
+    )
+    + "px";
 
 
-    el.style.setProperty(
-        '--dx',
-        (
-            Math.random()*180-90
-        )+'px'
-    );
-
-
-    el.style.animationDuration =
+    heart.style.animationDuration =
     (
-        5+
-        Math.random()*6
-    )+'s';
+        5
+        +
+        Math.random()
+        * 5
+    )
+    + "s";
 
 
-    box.appendChild(el);
+    document
+    .getElementById("hearts")
+    .appendChild(heart);
 
 
     setTimeout(
-        () => el.remove(),
-        12000
+        () => heart.remove(),
+        11000
     );
 
 }
 
 
 setInterval(
-    sprinkle,
+    createHeart,
     700
 );
 
 
+
+/* =========================
+   RUNNING NO BUTTON 😂
+========================= */
+
+const noBtn =
+document.getElementById("noBtn");
+
+
+function runAway() {
+
+
+    /*
+       Make button fixed
+       so it can escape anywhere
+    */
+
+    noBtn.style.position =
+    "fixed";
+
+
+    const buttonWidth =
+    noBtn.offsetWidth;
+
+
+    const buttonHeight =
+    noBtn.offsetHeight;
+
+
+    const padding = 20;
+
+
+    const maxX =
+    window.innerWidth
+    -
+    buttonWidth
+    -
+    padding;
+
+
+    const maxY =
+    window.innerHeight
+    -
+    buttonHeight
+    -
+    padding;
+
+
+    const randomX =
+    Math.max(
+        padding,
+        Math.random()
+        * maxX
+    );
+
+
+    const randomY =
+    Math.max(
+        padding,
+        Math.random()
+        * maxY
+    );
+
+
+    noBtn.style.left =
+    randomX + "px";
+
+
+    noBtn.style.top =
+    randomY + "px";
+
+
+    noBtn.style.transform =
+    "rotate("
+    +
+    (
+        Math.random()
+        * 30
+        -
+        15
+    )
+    +
+    "deg)";
+
+}
+
+
+
+/* =========================
+   YES BUTTON
+========================= */
+
+function yesClicked() {
+
+
+    const message =
+    document
+    .getElementById(
+        "finalMessage"
+    );
+
+
+    message.style.display =
+    "block";
+
+
+    /*
+       Lots of hearts
+    */
+
+    for(
+        let i = 0;
+        i < 30;
+        i++
+    ) {
+
+        setTimeout(
+            createHeart,
+            i * 100
+        );
+
+    }
+
+
+    /*
+       Hide NO button
+    */
+
+    noBtn.style.display =
+    "none";
+
+
+}
+
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const music =
+document.getElementById("music");
+
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+
+let playing = false;
+
+
+function toggleMusic() {
+
+
+    if(!playing) {
+
+
+        music.play()
+        .then(() => {
+
+            playing = true;
+
+            musicBtn.innerHTML =
+            "⏸️";
+
+        })
+        .catch(() => {
+
+            alert(
+                "Pehle music/song.mp3 add karo ❤️"
+            );
+
+        });
+
+
+    }
+
+    else {
+
+
+        music.pause();
+
+        playing = false;
+
+        musicBtn.innerHTML =
+        "🎵";
+
+    }
+
+}
+
+
 </script>
 
+
 </body>
+
 </html>
