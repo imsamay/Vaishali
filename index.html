@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,321 +8,881 @@
 
 <style>
 
+/* ================================
+   RESET
+================================ */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 body{
     font-family:"Segoe UI",Arial,sans-serif;
-    color:#633247;
-    background:linear-gradient(135deg,#fff5f8,#ffe4ed,#fff0f5);
-    overflow-x:hidden;
+    background:#090d29;
+    color:white;
 }
 
-/* Floating hearts */
 
-#hearts{
+/* ================================
+   STARS
+================================ */
+
+#stars{
     position:fixed;
     inset:0;
     pointer-events:none;
     overflow:hidden;
-    z-index:1000;
+    z-index:0;
 }
 
-.heart{
+.star{
     position:absolute;
-    top:-30px;
-    font-size:20px;
-    opacity:.7;
-    animation:fall linear forwards;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+
+    animation:
+        twinkle 2s ease-in-out infinite alternate;
 }
 
-@keyframes fall{
-    0%{
-        transform:translateY(0) rotate(0deg);
-        opacity:0;
-    }
+@keyframes twinkle{
 
-    10%{
-        opacity:.8;
+    0%{
+        opacity:.15;
+        transform:scale(.6);
     }
 
     100%{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0;
+        opacity:1;
+        transform:scale(1.4);
     }
+
 }
 
-/* Sections */
 
-section{
-    min-height:100vh;
+/* ================================
+   BOOK
+================================ */
+
+.book{
+
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+
+    perspective:2200px;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:30px 18px;
 }
 
-/* Card */
 
-.card{
-    width:100%;
-    max-width:950px;
-    padding:45px 30px;
-    text-align:center;
+/* ================================
+   PAGES
+================================ */
 
-    border-radius:35px;
+.page{
 
-    background:rgba(255,255,255,.68);
+    position:absolute;
 
-    border:1px solid rgba(255,255,255,.9);
+    width:min(92vw,720px);
+    height:min(92vh,850px);
 
-    box-shadow:
-    0 25px 80px rgba(150,60,100,.15);
+    left:50%;
+    top:50%;
 
-    backdrop-filter:blur(15px);
-}
+    transform:
+        translate(-50%,-50%)
+        rotateY(0deg);
 
-/* Text */
+    transform-origin:left center;
 
-.small-title{
-    font-size:12px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    color:#a66a82;
-    margin-bottom:18px;
-}
+    transform-style:preserve-3d;
 
-h1{
-    font-family:Georgia,serif;
-    font-size:clamp(60px,13vw,120px);
-    line-height:.9;
-    color:#bd5278;
-    margin-bottom:25px;
-}
+    border-radius:8px;
 
-h2{
-    font-family:Georgia,serif;
-    font-size:clamp(42px,8vw,75px);
-    color:#bd5278;
-    margin-bottom:20px;
-}
-
-.subtitle{
-    max-width:650px;
-    margin:0 auto 30px;
-    line-height:1.8;
-    font-size:16px;
-    color:#805267;
-}
-
-.moon{
-    font-size:90px;
-    margin-bottom:10px;
-    animation:moonFloat 3s ease-in-out infinite;
-}
-
-@keyframes moonFloat{
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-/* Buttons */
-
-button{
-    border:none;
-    padding:14px 25px;
-    border-radius:50px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.main-btn{
-    color:white;
-    background:#bd5278;
-
-    box-shadow:
-    0 10px 25px rgba(189,82,120,.25);
-}
-
-.main-btn:hover{
-    transform:translateY(-3px) scale(1.03);
-}
-
-.back-btn{
-    background:white;
-    color:#bd5278;
-    border:1px solid #e9b5c7;
-}
-
-/* Gallery */
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-top:30px;
-}
-
-.photo{
     overflow:hidden;
-    border-radius:22px;
-    background:white;
 
     box-shadow:
-    0 12px 30px rgba(100,40,65,.12);
-}
-
-.photo img{
-    display:block;
-    width:100%;
-    height:300px;
-    object-fit:cover;
-    transition:transform .5s ease;
-}
-
-.photo:hover img{
-    transform:scale(1.06);
-}
-
-/* Letter */
-
-.letter{
-    max-width:720px;
-    margin:20px auto;
-
-    font-family:Georgia,serif;
-
-    font-size:clamp(23px,4vw,34px);
-
-    line-height:1.55;
-
-    color:#71344f;
-}
-
-.signature{
-    margin-top:25px;
-    color:#a05d78;
-    letter-spacing:2px;
-    font-size:13px;
-}
-
-/* Proposal */
-
-.proposal-buttons{
-    position:relative;
-
-    width:100%;
-    min-height:150px;
-
-    margin-top:35px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    gap:20px;
-}
-
-.yes-btn{
-    position:relative;
-    z-index:5;
-
-    background:#bd5278;
-    color:white;
-
-    padding:15px 30px;
-}
-
-.no-btn{
-    position:relative;
-    z-index:4;
-
-    background:white;
-    color:#bd5278;
-
-    border:1px solid #e5a9bd;
-
-    padding:15px 30px;
+        0 30px 80px rgba(0,0,0,.5);
 
     transition:
-    left .25s ease,
-    top .25s ease,
-    transform .25s ease;
+        transform 1.05s
+        cubic-bezier(.65,.05,.35,1);
+
+    backface-visibility:hidden;
+
+    will-change:transform;
 }
 
-/* Final message */
 
-#finalMessage{
-    display:none;
+/* FLIPPED PAGE */
 
-    margin-top:30px;
+.page.flipped{
+
+    transform:
+        translate(-50%,-50%)
+        rotateY(-180deg);
+
+}
+
+
+/* PAGE SHADOW */
+
+.page::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.16),
+            transparent 12%,
+            transparent 82%,
+            rgba(255,255,255,.12)
+        );
+
+}
+
+
+/* ================================
+   INNER
+================================ */
+
+.inner{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    padding:50px 42px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+/* ================================
+   PINK
+================================ */
+
+.pink{
+
+    color:#612b45;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 8%,
+            rgba(255,255,255,.95),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            145deg,
+            #ffeaf2,
+            #f7bfd4,
+            #e9a2be
+        );
+
+}
+
+
+/* ================================
+   NIGHT
+================================ */
+
+.night{
+
+    color:white;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(130,150,255,.20),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #090f31,
+            #151a49,
+            #2c255d
+        );
+
+}
+
+
+/* ================================
+   TEXT
+================================ */
+
+.eyebrow{
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    opacity:.7;
+
+    margin-bottom:20px;
+
+}
+
+
+h1,
+h2{
 
     font-family:Georgia,serif;
 
-    font-size:clamp(25px,5vw,42px);
+    font-style:italic;
+
+}
+
+
+h1{
+
+    font-size:
+        clamp(55px,12vw,100px);
+
+    line-height:.9;
+
+    margin-bottom:25px;
+
+}
+
+
+h2{
+
+    font-size:
+        clamp(38px,7vw,64px);
+
+    line-height:1.05;
+
+    margin-bottom:22px;
+
+}
+
+
+.text{
+
+    max-width:560px;
+
+    font-family:Georgia,serif;
+
+    font-size:
+        clamp(18px,3vw,25px);
+
+    line-height:1.65;
+
+}
+
+
+.small-text{
+
+    max-width:560px;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+
+/* ================================
+   MOON
+================================ */
+
+.moon{
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    margin-bottom:30px;
+
+    background:
+
+        radial-gradient(
+            circle at 32% 28%,
+            #ffffff,
+            #ffe9b9 48%,
+            #d8a66c
+        );
+
+    box-shadow:
+
+        0 0 25px #fff,
+
+        0 0 70px
+        rgba(255,235,190,.7);
+
+    animation:
+        moonGlow 3s ease-in-out infinite;
+
+}
+
+
+@keyframes moonGlow{
+
+    50%{
+
+        box-shadow:
+
+            0 0 40px #fff,
+
+            0 0 105px
+            rgba(255,235,190,.9);
+
+    }
+
+}
+
+
+/* MOON CRATERS */
+
+.moon::before{
+
+    content:"";
+
+    display:block;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    background:
+        rgba(120,90,70,.16);
+
+    margin:
+        28px 0 0 68px;
+
+    box-shadow:
+
+        -42px 38px
+        0 5px
+        rgba(120,90,70,.11),
+
+        18px 48px
+        0 3px
+        rgba(120,90,70,.12);
+
+}
+
+
+/* ================================
+   CLOUDS
+================================ */
+
+.cloud{
+
+    position:absolute;
+
+    width:190px;
+    height:65px;
+
+    border-radius:100px;
+
+    background:
+        rgba(255,255,255,.20);
+
+    filter:blur(8px);
+
+}
+
+
+.cloud::before,
+.cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:inherit;
+
+}
+
+
+.cloud::before{
+
+    width:95px;
+    height:95px;
+
+    left:30px;
+    top:-38px;
+
+}
+
+
+.cloud::after{
+
+    width:105px;
+    height:105px;
+
+    right:18px;
+    top:-45px;
+
+}
+
+
+.cloud1{
+
+    left:-65px;
+    bottom:95px;
+
+}
+
+
+.cloud2{
+
+    right:-70px;
+    top:110px;
+
+    transform:scale(.8);
+
+}
+
+
+.cloud3{
+
+    right:-50px;
+    bottom:30px;
+
+    transform:scale(.6);
+
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.next-btn{
+
+    margin-top:32px;
+
+    padding:
+        14px 28px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b84773,
+            #d66d96
+        );
+
+    box-shadow:
+        0 10px 28px
+        rgba(100,30,65,.25);
+
+    transition:.3s;
+
+}
+
+
+.next-btn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.04);
+
+}
+
+
+.back-btn{
+
+    position:absolute;
+
+    bottom:22px;
+    left:22px;
+
+    padding:
+        8px 16px;
+
+    border-radius:30px;
+
+    border:
+        1px solid currentColor;
+
+    background:
+        rgba(255,255,255,.12);
+
+    color:inherit;
+
+    cursor:pointer;
+
+}
+
+
+/* ================================
+   PAGE NUMBER
+================================ */
+
+.page-number{
+
+    position:absolute;
+
+    bottom:23px;
+    right:25px;
+
+    font-size:12px;
+
+    opacity:.55;
+
+}
+
+
+/* ================================
+   GALLERY
+================================ */
+
+.gallery{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:9px;
+
+    margin-top:8px;
+
+}
+
+
+.photo{
+
+    height:145px;
+
+    overflow:hidden;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(50,15,30,.20);
+
+}
+
+
+.photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .5s;
+
+}
+
+
+.photo:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ================================
+   SHOOTING STARS
+================================ */
+
+.shooting-star{
+
+    position:absolute;
+
+    width:110px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            white
+        );
+
+    transform:
+        rotate(-35deg);
+
+    opacity:.8;
+
+}
+
+
+.shoot1{
+
+    top:23%;
+    left:10%;
+
+}
+
+
+.shoot2{
+
+    top:43%;
+    right:8%;
+
+    transform:
+        rotate(-35deg)
+        scale(.7);
+
+}
+
+
+.shoot3{
+
+    top:68%;
+    left:25%;
+
+    transform:
+        rotate(-35deg)
+        scale(.5);
+
+}
+
+
+/* ================================
+   ROMANTIC LINES
+================================ */
+
+.lines{
+
+    max-width:560px;
+
+    font-family:Georgia,serif;
+
+    font-style:italic;
+
+    font-size:
+        clamp(20px,4vw,31px);
+
+    line-height:1.85;
+
+}
+
+
+/* ================================
+   PROPOSAL
+================================ */
+
+.proposal-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    width:100%;
+
+    min-height:100px;
+
+    margin-top:25px;
+
+}
+
+
+.yes-btn,
+.no-btn{
+
+    border:none;
+
+    border-radius:50px;
+
+    padding:
+        15px 30px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.yes-btn{
+
+    color:white;
+
+    background:#bd5278;
+
+    box-shadow:
+        0 10px 25px
+        rgba(100,20,60,.25);
+
+}
+
+
+.no-btn{
+
+    color:#bd5278;
+
+    background:white;
+
+    border:
+        1px solid #e5b0c3;
+
+    transition:
+        left .2s,
+        top .2s,
+        transform .2s;
+
+}
+
+
+#finalMessage{
+
+    display:none;
+
+    margin-top:20px;
+
+    font-family:Georgia,serif;
+
+    font-size:
+        clamp(25px,5vw,42px);
 
     line-height:1.4;
 
-    color:#bd5278;
+    animation:
+        pop .5s ease;
 
-    animation:pop .5s ease;
 }
+
 
 @keyframes pop{
 
     from{
+
         transform:scale(.5);
+
         opacity:0;
+
     }
 
     to{
+
         transform:scale(1);
+
         opacity:1;
+
     }
 
 }
 
-/* Mobile */
+
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:600px){
 
-    .card{
-        padding:35px 18px;
-        border-radius:27px;
+    .page{
+
+        width:94vw;
+        height:94vh;
+
     }
+
+
+    .inner{
+
+        padding:
+            32px 20px;
+
+    }
+
 
     .gallery{
-        grid-template-columns:1fr;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
-    .photo img{
-        height:320px;
+
+    .photo{
+
+        height:125px;
+
     }
 
-    .letter{
-        font-size:24px;
+
+    .moon{
+
+        width:105px;
+        height:105px;
+
     }
 
-}
 
-@media(max-width:400px){
+    .small-text{
 
-    .photo img{
-        height:260px;
+        font-size:14px;
+
     }
 
-    .proposal-buttons{
-        min-height:160px;
+
+    .next-btn{
+
+        margin-top:25px;
+
     }
 
 }
@@ -336,78 +895,111 @@ button{
 <body>
 
 
-<!-- Floating hearts -->
+<!-- ==================================================
+     BACKGROUND STARS
+================================================== -->
 
-<div id="hearts"></div>
+<div id="stars"></div>
 
 
-<!-- =========================
+<!-- ==================================================
+     BOOK
+================================================== -->
+
+<div class="book">
+
+
+<!-- ==================================================
      PAGE 1
-========================= -->
+================================================== -->
 
-<section id="home">
+<div class="page pink" id="page1">
 
-<div class="card">
+<div class="inner">
 
-    <div class="small-title">
-        A little something for you
+    <div class="cloud cloud1"></div>
+
+    <div class="cloud cloud2"></div>
+
+
+    <div class="eyebrow">
+
+        A little something for you...
+
     </div>
 
-    <div class="moon">
-        🌙
-    </div>
+
+    <div class="moon"></div>
+
 
     <h1>
+
         My Moon
+
     </h1>
 
-    <p class="subtitle">
+
+    <p class="text">
 
         My name is <b>Akashh</b>. ❤️
 
         <br><br>
 
-        I made this little corner
-        of the internet just for you.
+        I made this little world
+        just for you.
 
         <br><br>
 
         Because some feelings
-        deserve their own little world. 💗
+        deserve more than words.
 
     </p>
 
-    <button
-    class="main-btn"
-    onclick="goTo('memories')">
 
-        Open my heart 💗
+    <button
+        class="next-btn"
+        onclick="nextPage()">
+
+        Next Glimpse → 🌙
 
     </button>
 
-</div>
 
-</section>
+    <div class="page-number">
 
+        1 / 8
 
-
-<!-- =========================
-     PAGE 2
-========================= -->
-
-<section id="memories">
-
-<div class="card">
-
-    <div class="small-title">
-        Little moments
     </div>
 
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAGE 2
+================================================== -->
+
+<div class="page pink" id="page2">
+
+<div class="inner">
+
+    <div class="eyebrow">
+
+        Little moments
+
+    </div>
+
+
     <h2>
+
         Our Memories ❤️
+
     </h2>
 
-    <p class="subtitle">
+
+    <p class="small-text">
 
         Every picture has a little
         piece of a memory attached to it.
@@ -415,101 +1007,141 @@ button{
         <br>
 
         And somehow,
-        every memory feels a little
-        more special because it's you. 🌸
+        every memory feels more
+        beautiful because it's you.
 
     </p>
 
 
-    <!-- PHOTOS -->
-
     <div class="gallery">
 
-        <div class="photo">
-            <img
-            src="assets/photo1.jpg"
-            alt="Our memory 1">
-        </div>
 
         <div class="photo">
+
             <img
-            src="assets/photo2.jpg"
-            alt="Our memory 2">
+                src="assets/photo1.jpg"
+                alt="Memory 1">
+
         </div>
 
-        <div class="photo">
-            <img
-            src="assets/photo3.jpg"
-            alt="Our memory 3">
-        </div>
 
         <div class="photo">
+
             <img
-            src="assets/photo4.jpg"
-            alt="Our memory 4">
+                src="assets/photo2.jpg"
+                alt="Memory 2">
+
         </div>
 
-        <div class="photo">
-            <img
-            src="assets/photo5.jpg"
-            alt="Our memory 5">
-        </div>
 
         <div class="photo">
+
             <img
-            src="assets/photo6.jpg"
-            alt="Our memory 6">
+                src="assets/photo3.jpg"
+                alt="Memory 3">
+
         </div>
+
+
+        <div class="photo">
+
+            <img
+                src="assets/photo4.jpg"
+                alt="Memory 4">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="assets/photo5.jpg"
+                alt="Memory 5">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="assets/photo6.jpg"
+                alt="Memory 6">
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="assets/photo7.jpg"
+                alt="Memory 7">
+
+        </div>
+
 
     </div>
 
 
-    <div style="margin-top:30px;">
+    <button
+        class="next-btn"
+        onclick="nextPage()">
 
-        <button
+        Next Glimpse → 💗
+
+    </button>
+
+
+    <button
         class="back-btn"
-        onclick="goTo('home')">
+        onclick="previousPage()">
 
-            ← Back
+        ← Back
 
-        </button>
+    </button>
 
-        <button
-        class="main-btn"
-        onclick="goTo('letter')">
 
-            One last thing 💌
+    <div class="page-number">
 
-        </button>
+        2 / 8
 
     </div>
 
 </div>
 
-</section>
+</div>
 
 
 
-<!-- =========================
+<!-- ==================================================
      PAGE 3
-========================= -->
+================================================== -->
 
-<section id="letter">
+<div class="page pink" id="page3">
 
-<div class="card">
+<div class="inner">
 
-    <div class="small-title">
+    <div class="eyebrow">
+
         From my heart
+
     </div>
 
-    <div class="moon">
+
+    <div
+        style="
+        font-size:62px;
+        margin-bottom:18px;
+        ">
+
         💗
+
     </div>
 
-    <div class="letter">
+
+    <div class="text">
 
         Bacha, I love you so muchh
-        ❤️🥰💝💗💋
+        ❤️🥰💝💗
 
         <br><br>
 
@@ -531,59 +1163,435 @@ button{
 
     </div>
 
-    <div class="signature">
+
+    <div
+        style="
+        margin-top:22px;
+        font-size:12px;
+        letter-spacing:2px;
+        opacity:.7;
+        ">
 
         — AKASHH, WITH LOVE 🌙
 
     </div>
 
-    <div style="margin-top:35px;">
 
-        <button
-        class="main-btn"
-        onclick="goTo('proposal')">
+    <button
+        class="next-btn"
+        onclick="nextPage()">
 
-            I have one question... 💌
+        Next Glimpse → 💌
 
-        </button>
+    </button>
+
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        3 / 8
 
     </div>
 
 </div>
 
-</section>
+</div>
 
 
 
-<!-- =========================
-     PAGE 4
-========================= -->
+<!-- ==================================================
+     PAGE 4 — MOON
+================================================== -->
 
-<section id="proposal">
+<div class="page night" id="page4">
 
-<div class="card">
+<div class="inner">
 
-    <div class="small-title">
-        Okay... this is it 😭
+    <div class="cloud cloud1"></div>
+
+    <div class="cloud cloud2"></div>
+
+    <div class="cloud cloud3"></div>
+
+
+    <div class="eyebrow">
+
+        Look at the sky...
+
     </div>
 
-    <div class="moon">
-        🌙
-    </div>
+
+    <div class="moon"></div>
+
 
     <h2>
-        Will you be mine? ❤️
+
+        The Moon in the Sky 🌙
+
     </h2>
 
-    <p class="subtitle">
+
+    <p class="text">
+
+        You are like the moon...
+
+        <br><br>
+
+        So beautiful.
+        So calm.
+
+        <br><br>
+
+        And somehow,
+        you have a magic
+        that lights up my
+        darkest nights.
+
+    </p>
+
+
+    <button
+        class="next-btn"
+        onclick="nextPage()">
+
+        Next Glimpse → ✨
+
+    </button>
+
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        4 / 8
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAGE 5 — STARS
+================================================== -->
+
+<div class="page night" id="page5">
+
+<div class="inner">
+
+    <div class="shooting-star shoot1"></div>
+
+    <div class="shooting-star shoot2"></div>
+
+    <div class="shooting-star shoot3"></div>
+
+
+    <div class="eyebrow">
+
+        Look a little closer...
+
+    </div>
+
+
+    <h2>
+
+        The Stars Are Watching ✨
+
+    </h2>
+
+
+    <div
+        style="
+        font-size:48px;
+        margin:15px 0;
+        ">
+
+        ✨ ⭐ ✨
+
+    </div>
+
+
+    <p class="text">
+
+        Every star up there
+        reminds me of you...
+
+        <br><br>
+
+        Because you are the one
+        who somehow makes my
+        world feel complete.
+
+        <br><br>
+
+        Maybe that's why
+        the night feels different
+        when I think of you. ❤️
+
+    </p>
+
+
+    <button
+        class="next-btn"
+        onclick="nextPage()">
+
+        Next Glimpse → ⭐
+
+    </button>
+
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        5 / 8
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAGE 6 — MOONLIGHT
+================================================== -->
+
+<div class="page night" id="page6">
+
+<div class="inner">
+
+    <div class="cloud cloud1"></div>
+
+    <div class="cloud cloud2"></div>
+
+
+    <div class="eyebrow">
+
+        One more thought...
+
+    </div>
+
+
+    <div class="moon"></div>
+
+
+    <h2>
+
+        Moon Shining Bright
+
+    </h2>
+
+
+    <p class="text">
+
+        Your smile is like
+        the moonlight...
+
+        <br><br>
+
+        It makes everything
+        around me brighter,
+        softer and more beautiful.
+
+        <br><br>
+
+        And sometimes I wonder...
+
+        <br>
+
+        how one person
+        can mean so much.
+
+    </p>
+
+
+    <button
+        class="next-btn"
+        onclick="nextPage()">
+
+        Next Glimpse → 🌙
+
+    </button>
+
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        6 / 8
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAGE 7 — LINES
+================================================== -->
+
+<div class="page pink" id="page7">
+
+<div class="inner">
+
+    <div
+        style="
+        font-size:48px;
+        margin-bottom:18px;
+        ">
+
+        ♡
+
+    </div>
+
+
+    <div class="eyebrow">
+
+        A few lines for you
+
+    </div>
+
+
+    <div class="lines">
+
+        No matter how far we are,
+
+        <br>
+
+        no matter what happens...
+
+        <br><br>
+
+        I will always find you
+
+        <br>
+
+        in my thoughts,
+
+        <br>
+
+        in my dreams,
+
+        <br>
+
+        and in every beat
+        of my heart.
+
+        <br><br>
+
+        ❤️
+
+    </div>
+
+
+    <button
+        class="next-btn"
+        onclick="nextPage()">
+
+        One Last Glimpse → 💌
+
+    </button>
+
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        7 / 8
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAGE 8 — PROPOSAL
+================================================== -->
+
+<div class="page pink" id="page8">
+
+<div class="inner">
+
+    <div class="eyebrow">
+
+        Okay... this is it 😭
+
+    </div>
+
+
+    <div
+        style="
+        font-size:70px;
+        margin-bottom:15px;
+        ">
+
+        🌙
+
+    </div>
+
+
+    <h2>
+
+        Will you be mine? ❤️
+
+    </h2>
+
+
+    <p class="text">
 
         Think carefully...
 
         <br>
 
-        Actually, don't think too much. 😂
+        Actually,
+        don't think too much. 😂
 
-        <br>
+        <br><br>
 
         Just listen to your heart. 💗
 
@@ -592,9 +1600,10 @@ button{
 
     <div class="proposal-buttons">
 
+
         <button
-        class="yes-btn"
-        onclick="yesClicked()">
+            class="yes-btn"
+            onclick="yesClicked()">
 
             YES ❤️
 
@@ -602,14 +1611,15 @@ button{
 
 
         <button
-        class="no-btn"
-        id="noBtn"
-        onmouseenter="runAway()"
-        ontouchstart="runAway()">
+            class="no-btn"
+            id="noBtn"
+            onmouseenter="runAway()"
+            ontouchstart="runAway()">
 
             NO 😭
 
         </button>
+
 
     </div>
 
@@ -625,7 +1635,7 @@ button{
         <br>
 
         <span
-        style="font-size:22px;">
+            style="font-size:20px;">
 
             Now come here. 🫂❤️
 
@@ -633,224 +1643,52 @@ button{
 
     </div>
 
+
+    <button
+        class="back-btn"
+        onclick="previousPage()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="page-number">
+
+        8 / 8
+
+    </div>
+
 </div>
 
-</section>
+</div>
 
+
+</div>
 
 
 <script>
 
+/* ==================================================
+   PAGE TURNING
+================================================== */
 
-/* =========================
-   NAVIGATION
-========================= */
+let currentPage = 1;
 
-function goTo(id){
+const totalPages = 8;
 
-    document
-    .getElementById(id)
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+const pages =
+    document.querySelectorAll(".page");
 
-}
 
+function setupPages(){
 
+    pages.forEach(
+        (page,index)=>{
 
-/* =========================
-   FLOATING HEARTS
-========================= */
+            const pageNumber =
+                index + 1;
 
-function createHeart(){
-
-    const heart =
-    document.createElement("div");
-
-    heart.className =
-    "heart";
-
-    const symbols = [
-        "❤️",
-        "💗",
-        "💕",
-        "💖",
-        "🌸",
-        "♡"
-    ];
-
-    heart.innerHTML =
-    symbols[
-        Math.floor(
-            Math.random()
-            *
-            symbols.length
-        )
-    ];
-
-    heart.style.left =
-    Math.random()
-    * 100
-    + "vw";
-
-    heart.style.fontSize =
-    (
-        12
-        +
-        Math.random()
-        * 18
-    )
-    + "px";
-
-    heart.style.animationDuration =
-    (
-        5
-        +
-        Math.random()
-        * 5
-    )
-    + "s";
-
-    document
-    .getElementById("hearts")
-    .appendChild(heart);
-
-    setTimeout(
-        () => heart.remove(),
-        11000
-    );
-
-}
-
-setInterval(
-    createHeart,
-    700
-);
-
-
-
-/* =========================
-   NO BUTTON RUNS AWAY 😂
-========================= */
-
-const noBtn =
-document.getElementById("noBtn");
-
-
-function runAway(){
-
-    noBtn.style.position =
-    "fixed";
-
-
-    const buttonWidth =
-    noBtn.offsetWidth;
-
-
-    const buttonHeight =
-    noBtn.offsetHeight;
-
-
-    const padding = 20;
-
-
-    const maxX =
-    window.innerWidth
-    -
-    buttonWidth
-    -
-    padding;
-
-
-    const maxY =
-    window.innerHeight
-    -
-    buttonHeight
-    -
-    padding;
-
-
-    const randomX =
-    Math.max(
-        padding,
-        Math.random()
-        * maxX
-    );
-
-
-    const randomY =
-    Math.max(
-        padding,
-        Math.random()
-        * maxY
-    );
-
-
-    noBtn.style.left =
-    randomX + "px";
-
-
-    noBtn.style.top =
-    randomY + "px";
-
-
-    noBtn.style.transform =
-    "rotate("
-    +
-    (
-        Math.random()
-        * 30
-        - 15
-    )
-    +
-    "deg)";
-
-}
-
-
-
-/* =========================
-   YES BUTTON
-========================= */
-
-function yesClicked(){
-
-    const message =
-    document
-    .getElementById(
-        "finalMessage"
-    );
-
-    message.style.display =
-    "block";
-
-
-    /* Hide NO */
-
-    noBtn.style.display =
-    "none";
-
-
-    /* Celebration */
-
-    for(
-        let i = 0;
-        i < 35;
-        i++
-    ){
-
-        setTimeout(
-            createHeart,
-            i * 80
-        );
-
-    }
-
-}
-
-</script>
-
-
-</body>
-
-</html>
+            /*
+              Pages behind the current
+              page get lower z-index.
