@@ -1,612 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My Moon 🌙</title>
 
 <style>
 
-/* =========================
-   BASIC
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-
-    font-family:
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-    color: #633247;
-
-    background:
-    linear-gradient(
-        135deg,
-        #fff5f8,
-        #ffe4ed,
-        #fff0f5
-    );
-
-    overflow-x: hidden;
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#633247;
+    background:linear-gradient(135deg,#fff5f8,#ffe4ed,#fff0f5);
+    overflow-x:hidden;
 }
 
+/* Floating hearts */
 
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-#hearts {
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    overflow: hidden;
-
-    z-index: 1000;
+#hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1000;
 }
 
-.heart {
-
-    position: absolute;
-
-    top: -30px;
-
-    font-size: 20px;
-
-    opacity: .7;
-
-    animation:
-    fall linear forwards;
+.heart{
+    position:absolute;
+    top:-30px;
+    font-size:20px;
+    opacity:.7;
+    animation:fall linear forwards;
 }
 
-@keyframes fall {
-
-    0% {
-
-        transform:
-        translateY(0)
-        rotate(0deg);
-
-        opacity: 0;
-
+@keyframes fall{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
     }
 
-    10% {
-
-        opacity: .8;
-
+    10%{
+        opacity:.8;
     }
 
-    100% {
-
-        transform:
-        translateY(110vh)
-        rotate(360deg);
-
-        opacity: 0;
-
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
     }
-
 }
 
+/* Sections */
 
-/* =========================
-   SECTIONS
-========================= */
-
-section {
-
-    min-height: 100vh;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 30px 18px;
-
+section{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 18px;
 }
 
+/* Card */
 
-/* =========================
-   GLASS CARD
-========================= */
+.card{
+    width:100%;
+    max-width:950px;
+    padding:45px 30px;
+    text-align:center;
 
-.card {
+    border-radius:35px;
 
-    width: 100%;
+    background:rgba(255,255,255,.68);
 
-    max-width: 950px;
-
-    padding:
-    45px 30px;
-
-    text-align: center;
-
-    border-radius: 35px;
-
-    background:
-    rgba(255,255,255,.65);
-
-    border:
-    1px solid
-    rgba(255,255,255,.9);
+    border:1px solid rgba(255,255,255,.9);
 
     box-shadow:
-    0 25px 80px
-    rgba(150,60,100,.15);
+    0 25px 80px rgba(150,60,100,.15);
 
-    backdrop-filter:
-    blur(15px);
-
+    backdrop-filter:blur(15px);
 }
 
+/* Text */
 
-/* =========================
-   TEXT
-========================= */
-
-.small-title {
-
-    font-size: 12px;
-
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
-
-    color: #a66a82;
-
-    margin-bottom: 18px;
-
+.small-title{
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#a66a82;
+    margin-bottom:18px;
 }
 
-
-h1 {
-
-    font-family:
-    Georgia,
-    serif;
-
-    font-size:
-    clamp(60px, 13vw, 120px);
-
-    line-height: .9;
-
-    color: #bd5278;
-
-    margin-bottom: 25px;
-
+h1{
+    font-family:Georgia,serif;
+    font-size:clamp(60px,13vw,120px);
+    line-height:.9;
+    color:#bd5278;
+    margin-bottom:25px;
 }
 
-
-h2 {
-
-    font-family:
-    Georgia,
-    serif;
-
-    font-size:
-    clamp(42px, 8vw, 75px);
-
-    color: #bd5278;
-
-    margin-bottom: 20px;
-
+h2{
+    font-family:Georgia,serif;
+    font-size:clamp(42px,8vw,75px);
+    color:#bd5278;
+    margin-bottom:20px;
 }
 
-
-.subtitle {
-
-    max-width: 650px;
-
-    margin:
-    0 auto 30px;
-
-    line-height: 1.8;
-
-    font-size: 16px;
-
-    color: #805267;
-
+.subtitle{
+    max-width:650px;
+    margin:0 auto 30px;
+    line-height:1.8;
+    font-size:16px;
+    color:#805267;
 }
 
-
-.moon {
-
-    font-size: 90px;
-
-    margin-bottom: 10px;
-
-    animation:
-    moonFloat 3s ease-in-out infinite;
-
+.moon{
+    font-size:90px;
+    margin-bottom:10px;
+    animation:moonFloat 3s ease-in-out infinite;
 }
 
-@keyframes moonFloat {
-
-    50% {
-
-        transform:
-        translateY(-10px);
-
+@keyframes moonFloat{
+    50%{
+        transform:translateY(-10px);
     }
-
 }
 
+/* Buttons */
 
-/* =========================
-   BUTTONS
-========================= */
-
-button {
-
-    border: none;
-
-    padding:
-    14px 25px;
-
-    border-radius: 50px;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .25s;
-
+button{
+    border:none;
+    padding:14px 25px;
+    border-radius:50px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
 }
 
-
-.main-btn {
-
-    color: white;
-
-    background:
-    #bd5278;
+.main-btn{
+    color:white;
+    background:#bd5278;
 
     box-shadow:
-    0 10px 25px
-    rgba(189,82,120,.25);
-
+    0 10px 25px rgba(189,82,120,.25);
 }
 
-
-.main-btn:hover {
-
-    transform:
-    translateY(-3px)
-    scale(1.03);
-
+.main-btn:hover{
+    transform:translateY(-3px) scale(1.03);
 }
 
-
-.back-btn {
-
-    background: white;
-
-    color: #bd5278;
-
-    border:
-    1px solid #e9b5c7;
-
+.back-btn{
+    background:white;
+    color:#bd5278;
+    border:1px solid #e9b5c7;
 }
 
+/* Gallery */
 
-/* =========================
-   GALLERY
-========================= */
-
-.gallery {
-
-    display:
-    grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap: 15px;
-
-    margin-top: 30px;
-
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:30px;
 }
 
-
-.photo {
-
-    overflow: hidden;
-
-    border-radius: 22px;
-
-    background: white;
+.photo{
+    overflow:hidden;
+    border-radius:22px;
+    background:white;
 
     box-shadow:
-    0 12px 30px
-    rgba(100,40,65,.12);
-
+    0 12px 30px rgba(100,40,65,.12);
 }
 
+.photo img{
+    display:block;
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    transition:transform .5s ease;
+}
 
-.photo img {
+.photo:hover img{
+    transform:scale(1.06);
+}
 
-    display: block;
+/* Letter */
 
-    width: 100%;
+.letter{
+    max-width:720px;
+    margin:20px auto;
 
-    height: 300px;
+    font-family:Georgia,serif;
 
-    object-fit: cover;
+    font-size:clamp(23px,4vw,34px);
+
+    line-height:1.55;
+
+    color:#71344f;
+}
+
+.signature{
+    margin-top:25px;
+    color:#a05d78;
+    letter-spacing:2px;
+    font-size:13px;
+}
+
+/* Proposal */
+
+.proposal-buttons{
+    position:relative;
+
+    width:100%;
+    min-height:150px;
+
+    margin-top:35px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+}
+
+.yes-btn{
+    position:relative;
+    z-index:5;
+
+    background:#bd5278;
+    color:white;
+
+    padding:15px 30px;
+}
+
+.no-btn{
+    position:relative;
+    z-index:4;
+
+    background:white;
+    color:#bd5278;
+
+    border:1px solid #e5a9bd;
+
+    padding:15px 30px;
 
     transition:
-    transform .5s ease;
-
+    left .25s ease,
+    top .25s ease,
+    transform .25s ease;
 }
 
+/* Final message */
 
-.photo:hover img {
+#finalMessage{
+    display:none;
 
-    transform:
-    scale(1.06);
+    margin-top:30px;
 
+    font-family:Georgia,serif;
+
+    font-size:clamp(25px,5vw,42px);
+
+    line-height:1.4;
+
+    color:#bd5278;
+
+    animation:pop .5s ease;
 }
 
+@keyframes pop{
 
-/* =========================
-   LETTER
-========================= */
-
-.letter {
-
-    max-width: 720px;
-
-    margin:
-    20px auto;
-
-    font-family:
-    Georgia,
-    serif;
-
-    font-size:
-    clamp(23px,4vw,34px);
-
-    line-height: 1.55;
-
-    color: #71344f;
-
-}
-
-
-.signature {
-
-    margin-top: 25px;
-
-    color: #a05d78;
-
-    letter-spacing: 2px;
-
-    font-size: 13px;
-
-}
-
-
-/* =========================
-   PROPOSAL
-========================= */
-
-.proposal-buttons {
-
-    position: relative;
-
-    width: 100%;
-
-    min-height: 130px;
-
-    margin-top: 35px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 20px;
-
-}
-
-
-.yes-btn {
-
-    position: relative;
-
-    z-index: 5;
-
-    background: #bd5278;
-
-    color: white;
-
-    padding:
-    15px 30px;
-
-}
-
-
-.no-btn {
-
-    position: relative;
-
-    z-index: 4;
-
-    background: white;
-
-    color: #bd5278;
-
-    border:
-    1px solid #e5a9bd;
-
-    padding:
-    15px 30px;
-
-}
-
-
-/* =========================
-   FINAL MESSAGE
-========================= */
-
-#finalMessage {
-
-    display: none;
-
-    margin-top: 30px;
-
-    font-family:
-    Georgia,
-    serif;
-
-    font-size:
-    clamp(25px,5vw,42px);
-
-    line-height: 1.4;
-
-    color: #bd5278;
-
-    animation:
-    pop .5s ease;
-
-}
-
-@keyframes pop {
-
-    from {
-
-        transform:
-        scale(.5);
-
-        opacity: 0;
-
+    from{
+        transform:scale(.5);
+        opacity:0;
     }
 
-    to {
-
-        transform:
-        scale(1);
-
-        opacity: 1;
-
+    to{
+        transform:scale(1);
+        opacity:1;
     }
 
 }
 
+/* Mobile */
 
-/* =========================
-   MUSIC
-========================= */
+@media(max-width:600px){
 
-.music-btn {
-
-    position: fixed;
-
-    right: 18px;
-
-    bottom: 18px;
-
-    z-index: 2000;
-
-    width: 52px;
-
-    height: 52px;
-
-    padding: 0;
-
-    border-radius: 50%;
-
-    background: white;
-
-    color: #bd5278;
-
-    border:
-    1px solid #efc0d0;
-
-    box-shadow:
-    0 8px 25px
-    rgba(120,50,80,.18);
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px) {
-
-    .card {
-
-        padding:
-        35px 18px;
-
-        border-radius: 27px;
-
+    .card{
+        padding:35px 18px;
+        border-radius:27px;
     }
 
-    .gallery {
-
-        grid-template-columns:
-        1fr;
-
+    .gallery{
+        grid-template-columns:1fr;
     }
 
-    .photo img {
-
-        height: 320px;
-
+    .photo img{
+        height:320px;
     }
 
-    .letter {
-
-        font-size: 24px;
-
+    .letter{
+        font-size:24px;
     }
 
 }
 
+@media(max-width:400px){
 
-/* =========================
-   SMALL SCREEN
-========================= */
-
-@media(max-width:400px) {
-
-    .photo img {
-
-        height: 260px;
-
+    .photo img{
+        height:260px;
     }
 
-    .proposal-buttons {
-
-        min-height: 150px;
-
+    .proposal-buttons{
+        min-height:160px;
     }
 
 }
@@ -619,7 +336,7 @@ button {
 <body>
 
 
-<!-- FLOATING HEARTS -->
+<!-- Floating hearts -->
 
 <div id="hearts"></div>
 
@@ -633,25 +350,16 @@ button {
 <div class="card">
 
     <div class="small-title">
-
         A little something for you
-
     </div>
-
 
     <div class="moon">
-
         🌙
-
     </div>
 
-
     <h1>
-
         My Moon
-
     </h1>
-
 
     <p class="subtitle">
 
@@ -662,13 +370,12 @@ button {
         I made this little corner
         of the internet just for you.
 
-        <br>
+        <br><br>
 
         Because some feelings
         deserve their own little world. 💗
 
     </p>
-
 
     <button
     class="main-btn"
@@ -693,18 +400,12 @@ button {
 <div class="card">
 
     <div class="small-title">
-
         Little moments
-
     </div>
 
-
     <h2>
-
         Our Memories ❤️
-
     </h2>
-
 
     <p class="subtitle">
 
@@ -720,68 +421,50 @@ button {
     </p>
 
 
+    <!-- PHOTOS -->
+
     <div class="gallery">
 
-
         <div class="photo">
-
             <img
             src="assets/photo1.jpg"
-            alt="Our memory">
-
+            alt="Our memory 1">
         </div>
 
-
         <div class="photo">
-
             <img
             src="assets/photo2.jpg"
-            alt="Our memory">
-
+            alt="Our memory 2">
         </div>
 
-
         <div class="photo">
-
             <img
             src="assets/photo3.jpg"
-            alt="Our memory">
-
+            alt="Our memory 3">
         </div>
 
-
         <div class="photo">
-
             <img
             src="assets/photo4.jpg"
-            alt="Our memory">
-
+            alt="Our memory 4">
         </div>
 
-
         <div class="photo">
-
             <img
             src="assets/photo5.jpg"
-            alt="Our memory">
-
+            alt="Our memory 5">
         </div>
-
 
         <div class="photo">
-
             <img
             src="assets/photo6.jpg"
-            alt="Our memory">
-
+            alt="Our memory 6">
         </div>
-
 
     </div>
 
 
     <div style="margin-top:30px;">
-
 
         <button
         class="back-btn"
@@ -791,7 +474,6 @@ button {
 
         </button>
 
-
         <button
         class="main-btn"
         onclick="goTo('letter')">
@@ -799,7 +481,6 @@ button {
             One last thing 💌
 
         </button>
-
 
     </div>
 
@@ -818,59 +499,43 @@ button {
 <div class="card">
 
     <div class="small-title">
-
         From my heart
-
     </div>
-
 
     <div class="moon">
-
         💗
-
     </div>
 
-
     <div class="letter">
-
 
         Bacha, I love you so muchh
         ❤️🥰💝💗💋
 
-
         <br><br>
-
 
         I just want you to know
         that you will always be
         loved by me.
 
-
         <br><br>
-
 
         No matter what happens,
         no matter where life takes us,
         I will always wish happiness
         for my Moon.
 
-
         <br><br>
-
 
         You are incredibly special
         to me. ❤️
 
-
     </div>
-
 
     <div class="signature">
 
         — AKASHH, WITH LOVE 🌙
 
     </div>
-
 
     <div style="margin-top:35px;">
 
@@ -891,7 +556,7 @@ button {
 
 
 <!-- =========================
-     PAGE 4 — PROPOSAL
+     PAGE 4
 ========================= -->
 
 <section id="proposal">
@@ -899,25 +564,16 @@ button {
 <div class="card">
 
     <div class="small-title">
-
         Okay... this is it 😭
-
     </div>
-
 
     <div class="moon">
-
         🌙
-
     </div>
 
-
     <h2>
-
         Will you be mine? ❤️
-
     </h2>
-
 
     <p class="subtitle">
 
@@ -935,7 +591,6 @@ button {
 
 
     <div class="proposal-buttons">
-
 
         <button
         class="yes-btn"
@@ -956,7 +611,6 @@ button {
 
         </button>
 
-
     </div>
 
 
@@ -971,9 +625,7 @@ button {
         <br>
 
         <span
-        style="
-        font-size:22px;
-        ">
+        style="font-size:22px;">
 
             Now come here. 🫂❤️
 
@@ -981,43 +633,9 @@ button {
 
     </div>
 
-
 </div>
 
 </section>
-
-
-
-<!-- MUSIC BUTTON -->
-
-<button
-class="music-btn"
-id="musicBtn"
-onclick="toggleMusic()">
-
-    🎵
-
-</button>
-
-
-<!-- AUDIO -->
-
-<audio
-id="music"
-loop>
-
-    <!--
-    PUT YOUR OWN / LICENSED MUSIC FILE HERE:
-
-    music/song.mp3
-
-    -->
-
-    <source
-    src="music/song.mp3"
-    type="audio/mpeg">
-
-</audio>
 
 
 
@@ -1028,15 +646,12 @@ loop>
    NAVIGATION
 ========================= */
 
-function goTo(id) {
+function goTo(id){
 
     document
     .getElementById(id)
     .scrollIntoView({
-
-        behavior:
-        "smooth"
-
+        behavior:"smooth"
     });
 
 }
@@ -1047,15 +662,13 @@ function goTo(id) {
    FLOATING HEARTS
 ========================= */
 
-function createHeart() {
+function createHeart(){
 
     const heart =
     document.createElement("div");
 
-
     heart.className =
     "heart";
-
 
     const symbols = [
         "❤️",
@@ -1066,7 +679,6 @@ function createHeart() {
         "♡"
     ];
 
-
     heart.innerHTML =
     symbols[
         Math.floor(
@@ -1076,12 +688,10 @@ function createHeart() {
         )
     ];
 
-
     heart.style.left =
     Math.random()
     * 100
     + "vw";
-
 
     heart.style.fontSize =
     (
@@ -1092,7 +702,6 @@ function createHeart() {
     )
     + "px";
 
-
     heart.style.animationDuration =
     (
         5
@@ -1102,11 +711,9 @@ function createHeart() {
     )
     + "s";
 
-
     document
     .getElementById("hearts")
     .appendChild(heart);
-
 
     setTimeout(
         () => heart.remove(),
@@ -1114,7 +721,6 @@ function createHeart() {
     );
 
 }
-
 
 setInterval(
     createHeart,
@@ -1124,20 +730,14 @@ setInterval(
 
 
 /* =========================
-   RUNNING NO BUTTON 😂
+   NO BUTTON RUNS AWAY 😂
 ========================= */
 
 const noBtn =
 document.getElementById("noBtn");
 
 
-function runAway() {
-
-
-    /*
-       Make button fixed
-       so it can escape anywhere
-    */
+function runAway(){
 
     noBtn.style.position =
     "fixed";
@@ -1200,8 +800,7 @@ function runAway() {
     (
         Math.random()
         * 30
-        -
-        15
+        - 15
     )
     +
     "deg)";
@@ -1214,8 +813,7 @@ function runAway() {
    YES BUTTON
 ========================= */
 
-function yesClicked() {
-
+function yesClicked(){
 
     const message =
     document
@@ -1223,96 +821,32 @@ function yesClicked() {
         "finalMessage"
     );
 
-
     message.style.display =
     "block";
 
 
-    /*
-       Lots of hearts
-    */
-
-    for(
-        let i = 0;
-        i < 30;
-        i++
-    ) {
-
-        setTimeout(
-            createHeart,
-            i * 100
-        );
-
-    }
-
-
-    /*
-       Hide NO button
-    */
+    /* Hide NO */
 
     noBtn.style.display =
     "none";
 
 
-}
+    /* Celebration */
 
+    for(
+        let i = 0;
+        i < 35;
+        i++
+    ){
 
-
-/* =========================
-   MUSIC
-========================= */
-
-const music =
-document.getElementById("music");
-
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-
-let playing = false;
-
-
-function toggleMusic() {
-
-
-    if(!playing) {
-
-
-        music.play()
-        .then(() => {
-
-            playing = true;
-
-            musicBtn.innerHTML =
-            "⏸️";
-
-        })
-        .catch(() => {
-
-            alert(
-                "Pehle music/song.mp3 add karo ❤️"
-            );
-
-        });
-
-
-    }
-
-    else {
-
-
-        music.pause();
-
-        playing = false;
-
-        musicBtn.innerHTML =
-        "🎵";
+        setTimeout(
+            createHeart,
+            i * 80
+        );
 
     }
 
 }
-
 
 </script>
 
